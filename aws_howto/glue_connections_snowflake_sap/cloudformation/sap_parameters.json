@@ -1,0 +1,11 @@
+[
+    { "ParameterKey" : "GlueConnAZ",            "ParameterValue" : ""},
+    { "ParameterKey" : "GlueConnSecurityGroup", "ParameterValue" : ""},
+    { "ParameterKey" : "GlueConnSubnetId",      "ParameterValue" : ""},    
+    { "ParameterKey" : "SAPHost",               "ParameterValue" : "__PUT_SAP_HOST_HERE__"},
+    { "ParameterKey" : "SAPPort",               "ParameterValue" : "__PUT_SAP_PORT_NUMBER_HERE__"},
+    { "ParameterKey" : "SAPUsername",           "ParameterValue" : "__PUT_USERNAME_HERE__"},
+    { "ParameterKey" : "SAPPassword",           "ParameterValue" : "__PUT_PASSWORD_HERE__"}
+]
+
+
