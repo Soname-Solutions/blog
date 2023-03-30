@@ -1,0 +1,14 @@
+[
+    { "ParameterKey" : "GlueConnAZ",            "ParameterValue" : ""},
+    { "ParameterKey" : "GlueConnSecurityGroup", "ParameterValue" : ""},
+    { "ParameterKey" : "GlueConnSubnetId",      "ParameterValue" : ""},    
+    { "ParameterKey" : "SFHost",                "ParameterValue" : "__PUT_SF_URL_HERE__"},
+    { "ParameterKey" : "SFWarehouse",           "ParameterValue" : "__PUT_SF_WH_NAME_HERE__"},
+    { "ParameterKey" : "SFDatabase",            "ParameterValue" : "__PUT_SF_DB_NAME_HERE__"},
+    { "ParameterKey" : "SFSchema",              "ParameterValue" : "__PUT_SF_SCHEMA_NAME_HERE__"},
+    { "ParameterKey" : "SFRole",                "ParameterValue" : "__PUT_SF_ROLE_HERE__"},
+    { "ParameterKey" : "SFUsername",            "ParameterValue" : "__PUT_USERNAME_HERE__"},
+    { "ParameterKey" : "SFPassword",            "ParameterValue" : "__PUT_PASSWORD_HERE__"}
+]
+
+

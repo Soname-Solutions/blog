@@ -1,0 +1,113 @@
+Parameters:
+  GlueConnAZ:
+    Description: Availability Zone Glue connection refers to
+    Type: String
+  GlueConnSecurityGroup:
+    Description: Security Group for Glue connection
+    Type: String
+  GlueConnSubnetId:
+    Description: Subnet for Glue connection
+    Type: String
+
+  SFHost:
+    Description: Snowflake Host
+    Type: String
+    NoEcho: true
+  SFWarehouse:
+    Description: Snowflake Host
+    Type: String
+    NoEcho: true
+  SFDatabase:
+    Description: Snowflake Host
+    Type: String
+    NoEcho: true
+  SFSchema:
+    Description: Snowflake Host
+    Type: String
+    NoEcho: true
+  SFRole:
+    Description: Snowflake Host
+    Type: String
+    NoEcho: true
+  SFUsername:
+    Description: Snowflake Host
+    Type: String
+    NoEcho: true
+  SFPassword:
+    Description: Snowflake Host
+    Type: String
+    NoEcho: true
+
+Resources:
+  SecretGlueSnowflake:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: 'awshowto/glue/snowflake'
+      SecretString: |
+        {
+          "sf_host"      : !Ref SFHost,
+          "sf_warehouse" : !Ref SFWarehouse,
+          "sf_database"  : !Ref SFDatabase,
+          "sf_schema"    : !Ref SFSchema,
+          "sf_role"      : !Ref SFRole,
+          "sf_username"  : !Ref SFUsername,
+          "sf_password"  : !Ref SFPassword
+        }
+
+  GlueConnectionSnowflake:
+    Type: AWS::Glue::Connection
+    Properties:
+      CatalogId: !Ref AWS::AccountId
+      ConnectionInput: 
+        Description: "sample-snowflake-connection"
+        ConnectionType: "CUSTOM"
+        PhysicalConnectionRequirements:
+          AvailabilityZone: !Ref GlueConnAZ
+          SecurityGroupIdList: 
+           - !Ref GlueConnSecurityGroup
+          SubnetId: !Ref GlueConnSubnetId
+        ConnectionProperties:
+          "CONNECTOR_CLASS_NAME": "net.snowflake.client.jdbc.SnowflakeDriver"
+          "CONNECTOR_TYPE": "Jdbc"
+          "CONNECTOR_URL": !Sub 
+            - "s3://${s3_bucket_name}/jdbc_drivers/snowflake-jdbc-3.13.16.jar"
+            - s3_bucket_name: !ImportValue awshowto-s3-bucket-glue
+          "JDBC_CONNECTION_URL": jdbc:snowflake://${sf_host}:443/?user=${sf_username}&password=${sf_password}&warehouse=${sf_warehouse}&db=${sf_database}&schema=${sf_schema}&role=${sf_role}
+          "SECRET_ID": !Ref SecretGlueSnowflake
+        Name: 'glueconn-awshowto-snowflake'
+
+  GlueIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: "iamr-awshowto-glueconn-glue-role-sf"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - glue.amazonaws.com
+          Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole
+
+  GlueJobSnowflakeSample:
+    Type: AWS::Glue::Job
+    Properties:
+      Command:
+        Name: "glueetl"
+        PythonVersion: 3
+        ScriptLocation: !Sub 
+          - 's3://${s3_bucket_name}/scripts/sample_snowflake_job.py'
+          - s3_bucket_name: !ImportValue awshowto-s3-bucket-glue
+      ExecutionProperty:
+        MaxConcurrentRuns: 1
+      Connections:
+        Connections:
+          - !Ref GlueConnectionSnowflake
+      GlueVersion: 3.0
+      MaxRetries: 0
+      Name: gluejob-awshowto-snowflake-sample
+      Role: !Ref GlueIAMRole
+      WorkerType: Standard
+      NumberOfWorkers: 2
