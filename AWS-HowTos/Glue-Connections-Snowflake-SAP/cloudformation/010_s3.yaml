@@ -1,0 +1,21 @@
+
+Resources:
+  S3BucketGlueScripts:
+    Type: AWS::S3::Bucket
+    Description: S3 bucket to store Glue Job scripts and drivers
+    DeletionPolicy: Delete
+    Properties:
+      BucketName: !Sub 's3-awshowto-glueconn-${AWS::AccountId}-glue'
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True  
+
+Outputs:
+  VPC:
+    Description:  S3 bucket to store Glue Job scripts and drivers
+    Value: !Ref S3BucketGlueScripts
+    Export:
+      Name: awshowto-s3-bucket-glue
