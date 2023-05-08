@@ -1,0 +1,14 @@
+DROP TABLE ds_artists_genres; 
+DROP TABLE ds_genres; 
+DROP TABLE ds_tracks; 
+DROP TABLE ds_albums; 
+DROP TABLE ds_artists; 
+DROP TABLE etl_control; 
+DROP TABLE la_tracks; 
+DROP TABLE la_albums; 
+DROP TABLE la_artists; 
+DROP TABLE tr_artists_genres; 
+DROP TABLE tr_genres; 
+DROP TABLE tr_tracks; 
+DROP TABLE tr_albums; 
+DROP TABLE tr_artists; 
