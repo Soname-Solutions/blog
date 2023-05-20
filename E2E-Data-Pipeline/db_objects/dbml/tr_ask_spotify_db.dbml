@@ -1,0 +1,41 @@
+Table tr_genres {
+  genre_id varchar(32)
+  genre_nm varchar(360)
+  data_load_id int
+}
+
+Table tr_artists_genres {
+  genre_id varchar(32)
+  artist_id varchar(32)
+  data_load_id int
+}
+
+Table tr_artists {
+  artist_id varchar(32)
+  artist_src_id varchar(360)
+  artist_nm varchar(360)
+  artist_popularity int
+  artist_followers int
+  data_load_id int
+}
+
+Table tr_albums {
+  album_id varchar(32)
+  artist_id varchar(32)
+  album_src_id varchar(360)
+  album_nm varchar(360)
+  release_dt date
+  total_tracks int
+  data_load_id int
+}
+
+Table tr_tracks {
+  track_id varchar(32)
+  album_id varchar(32)
+  artist_id varchar(32)
+  track_src_id varchar(360)
+  track_nm varchar(360)
+  track_popularity int
+  duration_ms int
+  data_load_id int
+}

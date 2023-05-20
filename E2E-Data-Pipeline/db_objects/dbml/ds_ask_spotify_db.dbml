@@ -1,0 +1,41 @@
+Table ds_genres {
+  genre_id varchar(32) [primary key]
+  genre_nm varchar(360)
+  data_load_id int
+}
+
+Table ds_artists_genres {
+  genre_id varchar(32) [primary key, ref: > ds_genres.genre_id]
+  artist_id varchar(32) [primary key, ref: > ds_artists.artist_id]
+  data_load_id int
+}
+
+Table ds_artists {
+  artist_id varchar(32) [primary key]
+  artist_src_id varchar(360)
+  artist_nm varchar(360)
+  artist_popularity int
+  artist_followers int
+  data_load_id int
+}
+
+Table ds_albums {
+  album_id varchar(32) [primary key]
+  artist_id varchar(32) [ref: > ds_artists.artist_id]
+  album_src_id varchar(360)
+  album_nm varchar(360)
+  release_dt date
+  total_tracks int
+  data_load_id int
+}
+
+Table ds_tracks {
+  track_id varchar(32) [primary key]
+  album_id varchar(32) [ref: > ds_albums.album_id]
+  artist_id varchar(32) [ref: > ds_artists.artist_id]
+  track_src_id varchar(360)
+  track_nm varchar(360)
+  track_popularity int
+  duration_ms int
+  data_load_id int
+}
