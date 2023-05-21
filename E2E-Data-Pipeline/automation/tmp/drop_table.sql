@@ -1,0 +1,14 @@
+DROP TABLE IF EXISTS ds_genres;
+DROP TABLE IF EXISTS ds_artists_genres;
+DROP TABLE IF EXISTS ds_artists;
+DROP TABLE IF EXISTS ds_albums;
+DROP TABLE IF EXISTS ds_tracks;
+DROP TABLE IF EXISTS etl_control;
+DROP TABLE IF EXISTS la_artists;
+DROP TABLE IF EXISTS la_albums;
+DROP TABLE IF EXISTS la_tracks;
+DROP TABLE IF EXISTS tr_genres;
+DROP TABLE IF EXISTS tr_artists_genres;
+DROP TABLE IF EXISTS tr_artists;
+DROP TABLE IF EXISTS tr_albums;
+DROP TABLE IF EXISTS tr_tracks;
