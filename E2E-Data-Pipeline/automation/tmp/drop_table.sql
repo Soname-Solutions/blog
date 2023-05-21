@@ -1,3 +1,8 @@
+ALTER TABLE ds_albums DROP FOREIGN KEY ds_albums_ibfk_1; 
+ALTER TABLE ds_artists_genres DROP FOREIGN KEY ds_artists_genres_ibfk_1; 
+ALTER TABLE ds_artists_genres DROP FOREIGN KEY ds_artists_genres_ibfk_2; 
+ALTER TABLE ds_tracks DROP FOREIGN KEY ds_tracks_ibfk_1; 
+ALTER TABLE ds_tracks DROP FOREIGN KEY ds_tracks_ibfk_2; 
 DROP TABLE IF EXISTS ds_genres;
 DROP TABLE IF EXISTS ds_artists_genres;
 DROP TABLE IF EXISTS ds_artists;
