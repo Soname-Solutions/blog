@@ -1,5 +1,5 @@
 """
-The automation module to generate scripts for DB objects.
+The automation module to deploy DB deployment scripts.
 The module allows DROP, CREATE of the objects on database passing corresponding options.
 """
 
