@@ -24,14 +24,14 @@ db_objects_folder = os.path.join(os.path.abspath(os.path.join(root_file_path, os
                                  'db_objects')
 
 
-def create_drop_file(output_file):
+def create_drop_file(output_file: str) -> None:
     """create empty file with DDL DROP statements"""
 
     with open(output_file, 'w+', encoding='UTF-8'):
         pass
 
 
-def create_db_connection():
+def create_db_connection() -> mariadb.connect:
     """create MariaDB connection"""
 
     try:
@@ -48,7 +48,7 @@ def create_db_connection():
     return conn
 
 
-def execute_sql(ddl):
+def execute_sql(ddl : list) -> list:
     """deploy generated DDL scripts if deployment parameter is True"""
 
     conn = create_db_connection()
@@ -70,7 +70,7 @@ def execute_sql(ddl):
     return select_output
 
 
-def drop_fk_contraints(output_drop_file, drop_objects_param):
+def drop_fk_contraints(output_drop_file: str, drop_objects_param: bool) -> None:
     """ select all FK constraints.
         generate drop FK constraint statement.
         execute drop FK constraint statement."""
@@ -100,7 +100,7 @@ def drop_fk_contraints(output_drop_file, drop_objects_param):
             print(f'FK {fk_name} is dropped ...')
 
 
-def get_deployment_tables(file_paths):
+def get_deployment_tables(file_paths: list) -> list:
     """get all table names from db deployment scripts"""
 
     table_names = []
@@ -115,7 +115,7 @@ def get_deployment_tables(file_paths):
     return table_names
 
 
-def drop_objects(file_paths, output_drop_file, drop_objects_param):
+def drop_objects(file_paths: list, output_drop_file: str, drop_objects_param: bool) -> None:
     """generate DROP statements. Execute DROP statements if drop_objects_param"""
 
     tables = get_deployment_tables(file_paths)
@@ -131,7 +131,7 @@ def drop_objects(file_paths, output_drop_file, drop_objects_param):
             write_file.write(sql + '\n')
 
 
-def create_objects(file_paths, deploy_objects_param):
+def create_objects(file_paths: list, deploy_objects_param: bool) -> None:
     """generate CREATE statements. Execute CREATE statements if deploy_objects_param"""
 
     create_statement = ''
@@ -152,10 +152,10 @@ def create_objects(file_paths, deploy_objects_param):
             print(f'{file} was deployed ...')
 
 
-def db_deployment(  db_objects,
-                    output_drop_file,
-                    drop_objects_param=False,
-                    deploy_objects_param=False):
+def db_deployment(  db_objects: str,
+                    output_drop_file: str,
+                    drop_objects_param: bool = False,
+                    deploy_objects_param: bool = False) -> None:
     """Module entry point.
     - Generate file with ALTER TABLE {table_name} DROP FOREIGN KEY {fk_name}.
     - Generate file with DROP statements for all objects in db_objects folder.
