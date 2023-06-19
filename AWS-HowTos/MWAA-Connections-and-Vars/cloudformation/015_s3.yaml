@@ -1,0 +1,27 @@
+
+Parameters:
+  ProjectName:
+    Description: ProjectName used also as Airflow EnvironmentName and used in Tags
+    Type: String
+
+#####################################
+Resources:
+  AirflowS3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties: 
+      BucketName: !Sub 's3-${ProjectName}-${AWS::AccountId}'
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  VPC:
+    Description: S3 bucket name for Airflow
+    Value: !Ref AirflowS3Bucket
+    Export:
+      Name: !Sub 's3-${ProjectName}'
