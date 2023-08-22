@@ -74,12 +74,17 @@ def copy_files() -> list[str]:
 
 
 def start_luigi(unprocessed_files):
+    """start luigi pipeline. get result status of the pipeline exection."""
+
     logger.info(f'luigi will start for {unprocessed_files}')
     luigi_run_result = luigi.build(
         [AskSpotifyPipeline(unprocessed_files)],
         detailed_summary=True,
-        local_scheduler=True)
-    print(luigi_run_result.summary_text)
+        local_scheduler=True,
+        logging_conf_file=config.get('path','logging_file')
+        )
+
+    logger.info('all luigi pipelines are done')
 
 
 def main():
