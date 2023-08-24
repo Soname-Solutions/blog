@@ -6,6 +6,7 @@ import os
 from luigi.contrib.mysqldb import MySqlTarget
 from ask_spotify_etl_config import Config
 from db_connector.mariadb_connector import MariaDBConnector
+from sql_scripts.get_sql_script import get_sql_script
 
 
 project_root = os.path.dirname(os.path.abspath(__file__))
@@ -27,13 +28,13 @@ class LuigiMaridbTarget():
                     update_id=control_value)
     def run(self):
         return self.get_luigi_target(
-            table=self.file,
+            table=self.table,
             control_value=self.control_value
         ).touch()
 
     def output(self):
         return self.get_luigi_target(
-            table=self.file,
+            table=self.table,
             control_value=self.control_value
         )
 
@@ -53,14 +54,15 @@ class ETLControlRegistration(LuigiMaridbTarget, luigi.Task):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.file = self.file
-        self.control_value = f'{self.file} under id: '
+        self.control_value = f'{__class__.__name__}:{self.file}:'
+        self.table = 'etl_control'
+
 
     def run(self):
         """ register files.csv in etl_control table.
             data_load_id is returned as a control value for the file load"""
 
-        sql_register = [f"insert into etl_control (file_name, status) values ('{self.file}', 'in progress')"]
-        
+        sql_register = [f"insert into etl_control (file_name, status) values ('{self.file}', 'in progress')"]   
 
         connector = MariaDBConnector()
         with connector:
@@ -82,13 +84,16 @@ class LALoadTask(LuigiMaridbTarget, luigi.Task):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.file = self.file
-        self.control_value = f"{self.file} under id: "
-        self.la_table = f"la_{str(self.file).split('_')[0]}"
+        self.control_value = f'{__class__.__name__}:{self.file}:'
+        self.table = f"la_{self.file.split('_')[0]}"
+
 
     def requires(self):
         return ETLControlRegistration(file=self.file)
 
     def run(self):
+        """data ingest csv >> db tables"""
+
         file_landing_zone = config.get('path', 'file_landing_zone')
         file_path = os.path.join(file_landing_zone, self.file)
         data_load_id = self.get_data_load_id(self.file)
@@ -106,12 +111,12 @@ class LALoadTask(LuigiMaridbTarget, luigi.Task):
                     # in case double quotes exist in data, double it (escaping) for sql insert.
                     row_values = ', '.join(f'''"{element.replace('"', '""')}"''' for element in row)
                     insert_query = [f"""
-                        INSERT INTO {self.la_table} ({', '.join(header)})
+                        INSERT INTO {self.table} ({', '.join(header)})
                         VALUES ({row_values}, '{data_load_id}')
                     """]
                     db_connector.execute(insert_query)
                     counter += 1
-        logger.info(f"{counter} rows were inserted into {self.la_table}")
+        logger.info(f"{counter} rows were inserted into {self.table}")
 
 
         super().run()
@@ -124,10 +129,30 @@ class TRLoadTask(LuigiMaridbTarget, luigi.Task):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.class_name = __class__.__name__
+        self.file = self.file
+        self.control_value = f'{__class__.__name__}:{self.file}:'
+        self.table = f"tr_{self.file.split('_')[0]}"
 
     def requires(self):
         return LALoadTask(file=self.file)
+    
+    def run(self):
+        """ data load: la >> tr.
+            type casting, data split, generation of surrogate keys.
+            incremental load.
+        """
+        data_load_id = self.get_data_load_id(self.file)
+        self.control_value += data_load_id
+        
+        sql_script = [get_sql_script(layer='tr',file=self.file) % (data_load_id, data_load_id)]
+
+        db_connector = MariaDBConnector()
+        with db_connector:
+            db_connector.execute(sql_script)
+
+        logger.info(f"tr_{self.table} was loaded under id: {data_load_id}")
+
+        super().run()
 
 
 class DSLoadTask(LuigiMaridbTarget, luigi.Task):
@@ -151,13 +176,14 @@ class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.file = __class__.__name__
+        self.table = __class__.__name__
         self.control_value = '-'.join(sorted(self.files_to_process))
 
     def requires(self):
         for file in self.files_to_process:
             # yield DSLoadTask(file=file) TODO: revert me back
             # yield ETLControlRegistration(file=file)
-            yield LALoadTask(file=file)
+            # yield LALoadTask(file=file)
+            yield TRLoadTask(file=file)
 
             
