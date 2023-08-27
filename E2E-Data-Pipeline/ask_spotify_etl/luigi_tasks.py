@@ -18,6 +18,7 @@ config = Config()
 class LuigiMaridbTarget():
     """parent class for ETL Luigi tasks"""
 
+    pipeline_files_control_value = ''
 
     def get_luigi_target(self, table, control_value):
         return MySqlTarget(host=config.get('database.credentials', 'host'),
@@ -26,6 +27,7 @@ class LuigiMaridbTarget():
                     password=config.get('database.credentials', 'password'),
                     table=table,
                     update_id=control_value)
+    
     def run(self):
         return self.get_luigi_target(
             table=self.table,
@@ -122,20 +124,47 @@ class LALoadTask(LuigiMaridbTarget, luigi.Task):
         super().run()
 
 
+class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
+    """gateway task.
+    make sure that all LA tasks are done, before TR load.
+    reason: FK dependencies"""
+    
+    all_LA_dependent_tasks = luigi.Parameter()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.table = __class__.__name__
+        self.control_value = self.table+LuigiMaridbTarget.pipeline_files_control_value
+    
+    def requires(self):
+        return self.all_LA_dependent_tasks
 
 class TRLoadTask(LuigiMaridbTarget, luigi.Task):
 
     file = luigi.Parameter()
+    all_LA_dependent_tasks = []
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.file = self.file
         self.control_value = f'{__class__.__name__}:{self.file}:'
         self.table = f"tr_{self.file.split('_')[0]}"
+        TRLoadTask.all_LA_dependent_tasks.append(LALoadTask(file=self.file))
 
     def requires(self):
-        return LALoadTask(file=self.file)
+        # return LALoadTask(file=self.file)
+        return(LACompleteGateway(TRLoadTask.all_LA_dependent_tasks))
     
+    @property
+    def priority(self):
+        """control on the order of execution of available tasks"""
+        if self.file.split('_')[0] == 'artists':
+            return 100
+        elif self.file.split('_')[0] == 'albums':
+            return 90
+        elif self.file.split('_')[0] == 'tracks':
+            return 80
+
     def run(self):
         """ data load: la >> tr.
             type casting, data split, generation of surrogate keys.
@@ -145,6 +174,12 @@ class TRLoadTask(LuigiMaridbTarget, luigi.Task):
         self.control_value += data_load_id
         
         sql_script = [get_sql_script(layer='tr',file=self.file) % (data_load_id, data_load_id)]
+        
+        # split logic for data normalization
+        if self.file.split('_')[0] == 'artists':
+            sql_script.append(get_sql_script(layer='tr', split_table='genres') % (data_load_id, data_load_id))
+            sql_script.append(get_sql_script(layer='tr', split_table='artists_genres') % (data_load_id, data_load_id))
+
 
         db_connector = MariaDBConnector()
         with db_connector:
@@ -176,14 +211,16 @@ class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # define pipeline level control postfix
+        LuigiMaridbTarget.pipeline_files_control_value = '-'.join(sorted(self.files_to_process))
         self.table = __class__.__name__
-        self.control_value = '-'.join(sorted(self.files_to_process))
+        self.control_value = self.table + LuigiMaridbTarget.pipeline_files_control_value
 
     def requires(self):
         for file in self.files_to_process:
             # yield DSLoadTask(file=file) TODO: revert me back
+
             # yield ETLControlRegistration(file=file)
             # yield LALoadTask(file=file)
             yield TRLoadTask(file=file)
-
-            
+    
