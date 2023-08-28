@@ -1,0 +1,1 @@
+INSERT INTO ds_artists_genres SELECT distinct * FROM tr_artists_genres

@@ -1,0 +1,1 @@
+INSERT INTO ds_tracks SELECT distinct * FROM tr_tracks

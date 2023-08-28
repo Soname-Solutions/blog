@@ -11,7 +11,7 @@ INSERT
     data_load_id)
 SELECT
 	DISTINCT 
-    MD5(la.track_id) AS track_id,
+	MD5(la.track_id) AS track_id,
 	COALESCE(ta.artist_id, -1) AS artist_id,
 	COALESCE(al.album_id, -1) AS album_id,
 	la.track_id AS track_src_id,

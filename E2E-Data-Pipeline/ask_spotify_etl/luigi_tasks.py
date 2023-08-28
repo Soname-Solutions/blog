@@ -152,7 +152,6 @@ class TRLoadTask(LuigiMaridbTarget, luigi.Task):
         TRLoadTask.all_LA_dependent_tasks.append(LALoadTask(file=self.file))
 
     def requires(self):
-        # return LALoadTask(file=self.file)
         return(LACompleteGateway(TRLoadTask.all_LA_dependent_tasks))
     
     @property
@@ -196,12 +195,46 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.class_name = __class__.__name__
-        self.control_value = self.class_name + self.file + '1' # TODO: control value to be defined
+        self.file = self.file
+        self.control_value = f'{__class__.__name__}:{self.file}:'
+        self.table = f"ds_{self.file.split('_')[0]}"
 
     def requires(self):
         return TRLoadTask(file=self.file)
 
+    @property
+    def priority(self):
+        """control on the order of execution of available tasks"""
+        if self.file.split('_')[0] == 'artists':
+            return 100
+        elif self.file.split('_')[0] == 'albums':
+            return 90
+        elif self.file.split('_')[0] == 'tracks':
+            return 80
+    
+    def run(self):
+        """ data load: tr >> ds.
+        """
+        data_load_id = self.get_data_load_id(self.file)
+        self.control_value += data_load_id
+
+        # sql_script = [get_sql_script(layer='tr',file=self.file) % (data_load_id, data_load_id)]
+        sql_script = [get_sql_script(layer='ds',file=self.file)]
+        
+        # split logic for data normalization
+        if self.file.split('_')[0] == 'artists':
+            # sql_script.append(get_sql_script(layer='ds', split_table='genres') % (data_load_id, data_load_id))
+            # sql_script.append(get_sql_script(layer='ds', split_table='artists_genres') % (data_load_id, data_load_id))
+            sql_script.append(get_sql_script(layer='ds', split_table='genres') )
+            sql_script.append(get_sql_script(layer='ds', split_table='artists_genres'))
+
+        db_connector = MariaDBConnector()
+        with db_connector:
+            db_connector.execute(sql_script)
+
+        logger.info(f"ds_{self.table} was loaded under id: {data_load_id}")
+
+        super().run()
 
 class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
     """pipeline reversed entry point."""
@@ -218,9 +251,9 @@ class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
 
     def requires(self):
         for file in self.files_to_process:
-            # yield DSLoadTask(file=file) TODO: revert me back
+            yield DSLoadTask(file=file)
 
             # yield ETLControlRegistration(file=file)
             # yield LALoadTask(file=file)
-            yield TRLoadTask(file=file)
+            # yield TRLoadTask(file=file)
     

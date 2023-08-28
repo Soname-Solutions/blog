@@ -1,0 +1,1 @@
+INSERT INTO ds_genres SELECT distinct * FROM tr_genres

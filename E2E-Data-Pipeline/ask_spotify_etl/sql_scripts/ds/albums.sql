@@ -1,0 +1,1 @@
+INSERT INTO ds_albums SELECT distinct * FROM tr_albums

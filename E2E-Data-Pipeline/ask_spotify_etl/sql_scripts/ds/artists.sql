@@ -1,0 +1,1 @@
+INSERT INTO ds_artists SELECT distinct * FROM tr_artists
