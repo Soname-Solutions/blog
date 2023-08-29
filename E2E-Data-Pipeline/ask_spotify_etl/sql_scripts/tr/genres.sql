@@ -7,7 +7,7 @@ SELECT
 	DISTINCT
 	MD5(la.genre) AS genre_id,
 	la.genre AS genre_nm,
-    %s
+    la.data_load_id
 FROM
 	la_artists la
 WHERE la.data_load_id = %s

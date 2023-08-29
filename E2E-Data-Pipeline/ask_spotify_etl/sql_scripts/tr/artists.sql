@@ -13,7 +13,7 @@ SELECT
 	la.name AS artist_nm,
 	CAST(la.popularity AS int) AS artist_popularity,
 	CAST(la.followers AS int) AS artist_followers,
-    %s
+    la.data_load_id
 FROM
 	la_artists la
 WHERE la.data_load_id = %s
