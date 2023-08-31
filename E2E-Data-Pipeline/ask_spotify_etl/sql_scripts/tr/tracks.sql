@@ -8,6 +8,7 @@ INSERT
 	track_nm,
 	track_popularity,
 	duration_ms,
+	hdif,
 	data_load_id)
 SELECT
 	DISTINCT 
@@ -18,6 +19,7 @@ SELECT
 	la.track_name AS track_nm,
 	CAST(la.popularity AS int) AS track_popularity,
 	CAST(la.duration_ms AS int) AS duration_ms,
+	MD5(CONCAT(TRIM(COALESCE(ta.artist_id, -1)), '|', TRIM(COALESCE(al.album_id, -1)), '|', TRIM(la.track_name), '|', TRIM(la.popularity), '|', TRIM(la.duration_ms), '|')) AS hdif,
 	la.data_load_id
 FROM
 	la_tracks la

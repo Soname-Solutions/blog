@@ -5,6 +5,7 @@ INSERT
 	artist_nm,
 	artist_popularity,
 	artist_followers,
+	hdif,
     data_load_id)
 SELECT
 	DISTINCT 
@@ -13,6 +14,7 @@ SELECT
 	la.name AS artist_nm,
 	CAST(la.popularity AS int) AS artist_popularity,
 	CAST(la.followers AS int) AS artist_followers,
+	MD5(CONCAT(TRIM(la.name), '|', TRIM(la.popularity), '|', TRIM(la.followers), '|')) hdif,
     la.data_load_id
 FROM
 	la_artists la

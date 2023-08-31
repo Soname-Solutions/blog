@@ -6,6 +6,7 @@ INSERT
 	album_nm,
 	release_dt,
 	total_tracks,
+	hdif,
 	data_load_id)
 SELECT
 	DISTINCT
@@ -15,6 +16,7 @@ SELECT
 	al.name AS album_nm, 
 	DATE(CONCAT(al.release_date, '-01-01')) AS release_dt,
 	CAST(al.total_tracks AS int) AS total_tracks,
+	MD5(CONCAT( TRIM(al.artist_id), '|', TRIM(al.name), '|', TRIM(al.release_date), '|', TRIM(al.total_tracks), '|')) AS hdif,
 	al.data_load_id
 FROM
 	la_albums al
