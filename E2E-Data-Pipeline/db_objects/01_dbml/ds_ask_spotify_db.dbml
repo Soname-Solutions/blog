@@ -1,12 +1,14 @@
 Table ds_genres {
   genre_id varchar(32) [primary key]
   genre_nm varchar(360)
+  hdif varchar(32)
   data_load_id int
 }
 
 Table ds_artists_genres {
   genre_id varchar(32) [primary key, ref: > ds_genres.genre_id]
   artist_id varchar(32) [primary key, ref: > ds_artists.artist_id]
+  hdif varchar(32)
   data_load_id int
 }
 
@@ -16,6 +18,7 @@ Table ds_artists {
   artist_nm varchar(360)
   artist_popularity int
   artist_followers int
+  hdif varchar(32)
   data_load_id int
 }
 
@@ -26,6 +29,7 @@ Table ds_albums {
   album_nm varchar(360)
   release_dt date
   total_tracks int
+  hdif varchar(32)
   data_load_id int
 }
 
@@ -37,5 +41,6 @@ Table ds_tracks {
   track_nm varchar(360)
   track_popularity int
   duration_ms int
+  hdif varchar(32)
   data_load_id int
 }

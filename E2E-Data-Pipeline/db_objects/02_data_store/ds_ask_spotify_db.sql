@@ -1,12 +1,14 @@
 CREATE TABLE `ds_genres` (
   `genre_id` varchar(32) PRIMARY KEY,
   `genre_nm` varchar(360),
+  `hdif` varchar(32),
   `data_load_id` int
 );
 
 CREATE TABLE `ds_artists_genres` (
   `genre_id` varchar(32),
   `artist_id` varchar(32),
+  `hdif` varchar(32),
   `data_load_id` int,
   PRIMARY KEY (`genre_id`, `artist_id`)
 );
@@ -17,6 +19,7 @@ CREATE TABLE `ds_artists` (
   `artist_nm` varchar(360),
   `artist_popularity` int,
   `artist_followers` int,
+  `hdif` varchar(32),
   `data_load_id` int
 );
 
@@ -27,6 +30,7 @@ CREATE TABLE `ds_albums` (
   `album_nm` varchar(360),
   `release_dt` date,
   `total_tracks` int,
+  `hdif` varchar(32),
   `data_load_id` int
 );
 
@@ -38,6 +42,7 @@ CREATE TABLE `ds_tracks` (
   `track_nm` varchar(360),
   `track_popularity` int,
   `duration_ms` int,
+  `hdif` varchar(32),
   `data_load_id` int
 );
 
