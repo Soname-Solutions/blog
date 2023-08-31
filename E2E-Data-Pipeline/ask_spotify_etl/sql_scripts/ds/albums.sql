@@ -1,1 +1,58 @@
-INSERT INTO ds_albums SELECT distinct * FROM tr_albums
+SET FOREIGN_KEY_CHECKS=0;
+
+INSERT
+	INTO
+	ds_albums (album_id,
+	artist_id,
+	album_src_id,
+	album_nm,
+	release_dt,
+	total_tracks,
+	hdif,
+	data_load_id)
+SELECT
+	tr.album_id,
+	tr.artist_id,
+	tr.album_src_id,
+	tr.album_nm,
+	tr.release_dt,
+	tr.total_tracks,
+	tr.hdif,
+	tr.data_load_id
+FROM
+	tr_albums tr
+LEFT JOIN ds_albums ds ON
+	tr.album_id = ds.album_id
+WHERE
+	ds.album_id IS NULL;
+
+
+UPDATE
+	ds_albums ds,
+		(
+	SELECT
+		tr.album_id,
+		tr.artist_id,
+		tr.album_nm,
+		tr.release_dt,
+		tr.total_tracks,
+		tr.hdif,
+		tr.data_load_id
+	FROM
+		tr_albums tr
+	LEFT JOIN ds_albums ds ON
+		tr.album_id = ds.album_id
+	WHERE ds.album_id IS NOT NULL
+) tr_data
+SET
+	ds.artist_id = tr_data.artist_id,
+	ds.album_nm = tr_data.album_nm,
+	ds.release_dt = tr_data.release_dt,
+	ds.total_tracks = tr_data.total_tracks,
+	ds.hdif = tr_data.hdif,
+	ds.data_load_id = tr_data.data_load_id
+WHERE
+	ds.album_id = tr_data.album_id
+AND ds.hdif != tr_data.hdif;
+
+SET FOREIGN_KEY_CHECKS=1;

@@ -16,5 +16,5 @@ def get_sql_script(layer: str, file: str = None, split_table: str = None) -> str
 
 if __name__ == "__main__":
     print(
-        get_sql_script('tr', 'artists_2023_08_12.csv') % ('1', '1')
+        [sql for sql in get_sql_script('ds', 'albums_2023_08_12.csv').split(';') if sql != '\n']
         )

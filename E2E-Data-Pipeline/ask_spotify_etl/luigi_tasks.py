@@ -134,7 +134,7 @@ class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.table = __class__.__name__
-        self.control_value = self.table+LuigiMaridbTarget.pipeline_files_control_value
+        self.control_value = self.table+':'+LuigiMaridbTarget.pipeline_files_control_value
     
     def requires(self):
         return self.all_LA_dependent_tasks
@@ -219,14 +219,18 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
         self.control_value += data_load_id
 
         # sql_script = [get_sql_script(layer='tr',file=self.file) % (data_load_id, data_load_id)]
-        sql_script = [get_sql_script(layer='ds',file=self.file)]
+        sql_script = [sql for sql in get_sql_script(layer='ds',file=self.file).split(';') if sql != '\n']
         
         # split logic for data normalization
         if self.file.split('_')[0] == 'artists':
-            # sql_script.append(get_sql_script(layer='ds', split_table='genres') % (data_load_id, data_load_id))
-            # sql_script.append(get_sql_script(layer='ds', split_table='artists_genres') % (data_load_id, data_load_id))
-            sql_script.append(get_sql_script(layer='ds', split_table='genres') )
-            sql_script.append(get_sql_script(layer='ds', split_table='artists_genres'))
+            # sql_script.append(get_sql_script(layer='ds', split_table='genres') )
+            # sql_script.append(get_sql_script(layer='ds', split_table='artists_genres'))
+            for sql in get_sql_script(layer='ds', split_table='genres').split(';'):
+                if sql != '\n':
+                    sql_script.append(sql)
+            for sql in get_sql_script(layer='ds', split_table='artists_genres').split(';'):
+                if sql != '\n':
+                    sql_script.append(sql)
 
         db_connector = MariaDBConnector()
         with db_connector:
@@ -253,7 +257,6 @@ class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
         for file in self.files_to_process:
             yield DSLoadTask(file=file)
 
-            # yield ETLControlRegistration(file=file)
-            # yield LALoadTask(file=file)
-            # yield TRLoadTask(file=file)
-    
+    # TODO: fix me
+    # def run(self):
+    #     unregister load
