@@ -8,7 +8,6 @@ Table ds_genres {
 Table ds_artists_genres {
   genre_id varchar(32) [primary key, ref: > ds_genres.genre_id]
   artist_id varchar(32) [primary key, ref: > ds_artists.artist_id]
-  hdif varchar(32)
   data_load_id int
 }
 
