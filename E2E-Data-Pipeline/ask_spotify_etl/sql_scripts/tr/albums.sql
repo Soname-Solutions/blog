@@ -36,4 +36,4 @@ UNION
 				ON
 	al.artist_id = ta.artist_src_id
 WHERE
-	al.data_load_id = %s
+	al.data_load_id = {data_load_id}

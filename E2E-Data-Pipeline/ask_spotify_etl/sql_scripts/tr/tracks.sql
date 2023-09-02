@@ -54,4 +54,4 @@ LEFT JOIN (
 ON
 		la.album_id = al.album_src_id
 WHERE
-	la.data_load_id = %s
+	la.data_load_id = {data_load_id}

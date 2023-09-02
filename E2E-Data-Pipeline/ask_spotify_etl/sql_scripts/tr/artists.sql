@@ -18,4 +18,4 @@ SELECT
     la.data_load_id
 FROM
 	la_artists la
-WHERE la.data_load_id = %s
+WHERE la.data_load_id = {data_load_id}

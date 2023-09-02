@@ -171,13 +171,17 @@ class TRLoadTask(LuigiMaridbTarget, luigi.Task):
         """
         data_load_id = self.get_data_load_id(self.file)
         self.control_value += data_load_id
-        
-        sql_script = [get_sql_script(layer='tr',file=self.file) % (data_load_id)]
-        
+
+        # sql_script = [get_sql_script(layer='tr',file=self.file) % (data_load_id)]
+        sql_script = get_sql_script(layer='tr',file=self.file,data_load_id_param=data_load_id)
+
+
         # split logic for data normalization
         if self.file.split('_')[0] == 'artists':
-            sql_script.append(get_sql_script(layer='tr', split_table='genres') % (data_load_id))
-            sql_script.append(get_sql_script(layer='tr', split_table='artists_genres') % (data_load_id))
+            # sql_script.append(get_sql_script(layer='tr', split_table='genres') % (data_load_id))
+            # sql_script.append(get_sql_script(layer='tr', split_table='artists_genres') % (data_load_id))
+            sql_script += get_sql_script(layer='tr', split_table='genres',data_load_id_param=data_load_id)
+            sql_script += get_sql_script(layer='tr', split_table='artists_genres',data_load_id_param=data_load_id)
 
 
         db_connector = MariaDBConnector()
@@ -218,19 +222,20 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
         data_load_id = self.get_data_load_id(self.file)
         self.control_value += data_load_id
 
-        # sql_script = [get_sql_script(layer='tr',file=self.file) % (data_load_id, data_load_id)]
-        sql_script = [sql for sql in get_sql_script(layer='ds',file=self.file).split(';') if sql != '\n']
+        # sql_script = [sql for sql in get_sql_script(layer='ds',file=self.file).split(';') if sql != '\n']
+        sql_script = get_sql_script(layer='ds',file=self.file)
         
         # split logic for data normalization
         if self.file.split('_')[0] == 'artists':
-            # sql_script.append(get_sql_script(layer='ds', split_table='genres') )
-            # sql_script.append(get_sql_script(layer='ds', split_table='artists_genres'))
-            for sql in get_sql_script(layer='ds', split_table='genres').split(';'):
-                if sql != '\n':
-                    sql_script.append(sql)
-            for sql in get_sql_script(layer='ds', split_table='artists_genres').split(';'):
-                if sql != '\n':
-                    sql_script.append(sql)
+
+            # for sql in get_sql_script(layer='ds', split_table='genres').split(';'):
+            #     if sql != '\n':
+            #         sql_script.append(sql)
+            # for sql in get_sql_script(layer='ds', split_table='artists_genres').split(';'):
+            #     if sql != '\n':
+            #         sql_script.append(sql)
+            sql_script += get_sql_script(layer='ds', split_table='genres')
+            sql_script += get_sql_script(layer='ds', split_table='artists_genres')
 
         db_connector = MariaDBConnector()
         with db_connector:
