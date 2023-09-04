@@ -1,7 +1,8 @@
+"""ask_spotify main ETL pipeline implemented with Luigi"""
 import csv
-import luigi
 import logging
 import os
+import luigi
 
 from luigi.contrib.mysqldb import MySqlTarget
 from ask_spotify_etl_config import Config
@@ -27,7 +28,7 @@ class LuigiMaridbTarget():
                     password=config.get('database.credentials', 'password'),
                     table=table,
                     update_id=control_value)
-    
+
     def run(self):
         return self.get_luigi_target(
             table=self.table,
@@ -128,14 +129,14 @@ class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
     """gateway task.
     make sure that all LA tasks are done, before TR load.
     reason: FK dependencies"""
-    
+
     all_LA_dependent_tasks = luigi.Parameter()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.table = __class__.__name__
         self.control_value = self.table+':'+LuigiMaridbTarget.pipeline_files_control_value
-    
+
     def requires(self):
         return self.all_LA_dependent_tasks
 
@@ -152,8 +153,8 @@ class TRLoadTask(LuigiMaridbTarget, luigi.Task):
         TRLoadTask.all_LA_dependent_tasks.append(LALoadTask(file=self.file))
 
     def requires(self):
-        return(LACompleteGateway(TRLoadTask.all_LA_dependent_tasks))
-    
+        return LACompleteGateway(TRLoadTask.all_LA_dependent_tasks)
+
     @property
     def priority(self):
         """control on the order of execution of available tasks"""
@@ -212,7 +213,7 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
             return 90
         elif self.file.split('_')[0] == 'tracks':
             return 80
-    
+
     def run(self):
         """ data load: tr >> ds.
         """
@@ -220,7 +221,7 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
         self.control_value += data_load_id
 
         sql_script = get_sql_script(layer='ds',file=self.file)
-        
+
         # split logic for data normalization
         if self.file.split('_')[0] == 'artists':
             sql_script += get_sql_script(layer='ds', split_table='genres')
@@ -234,11 +235,11 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
 
         super().run()
 
+
 class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
     """pipeline reversed entry point."""
 
     files_to_process = luigi.ListParameter()
-
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

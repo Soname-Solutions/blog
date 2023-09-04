@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.MariaDB_store/
+ask_spotify_app/landing_zone/
+ask_spotify_app/pyenv/
+MariaDB_store/
+.README.md
+.DS_Store
+.vscode/
+ask_spotify_app/
+automation/tmp/drop_table.sql
+../.DS_Store
