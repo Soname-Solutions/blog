@@ -1,3 +1,5 @@
+TRUNCATE TABLE tr_artists;
+
 INSERT
 	INTO
 	tr_artists (artist_id,
@@ -18,4 +20,4 @@ SELECT
     la.data_load_id
 FROM
 	la_artists la
-WHERE la.data_load_id = {data_load_id}
+WHERE la.data_load_id = {data_load_id};

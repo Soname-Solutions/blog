@@ -1,3 +1,5 @@
+TRUNCATE TABLE tr_tracks;
+
 INSERT
 	INTO
 	tr_tracks
@@ -54,4 +56,4 @@ LEFT JOIN (
 ON
 		la.album_id = al.album_src_id
 WHERE
-	la.data_load_id = {data_load_id}
+	la.data_load_id = {data_load_id};

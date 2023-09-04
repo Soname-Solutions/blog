@@ -1,3 +1,5 @@
+TRUNCATE TABLE tr_albums;
+
 INSERT
 	INTO
 	tr_albums (album_id,
@@ -36,4 +38,4 @@ UNION
 				ON
 	al.artist_id = ta.artist_src_id
 WHERE
-	al.data_load_id = {data_load_id}
+	al.data_load_id = {data_load_id} ;
