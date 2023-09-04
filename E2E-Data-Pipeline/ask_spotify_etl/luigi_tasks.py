@@ -41,7 +41,7 @@ class LuigiMaridbTarget():
         )
 
     def get_data_load_id(self, file):
-        sql_get_id = [f"select data_load_id  from etl_control ec where file_name = '{file}'"]
+        sql_get_id = [f"select data_load_id from etl_control ec where file_name = '{file}'"]
         connector = MariaDBConnector()
         with connector:
             data_load_id = str(connector.execute(sql_get_id)[0][0]) # [(int),] is a return value
@@ -172,14 +172,11 @@ class TRLoadTask(LuigiMaridbTarget, luigi.Task):
         data_load_id = self.get_data_load_id(self.file)
         self.control_value += data_load_id
 
-        # sql_script = [get_sql_script(layer='tr',file=self.file) % (data_load_id)]
         sql_script = get_sql_script(layer='tr',file=self.file,data_load_id_param=data_load_id)
 
 
         # split logic for data normalization
         if self.file.split('_')[0] == 'artists':
-            # sql_script.append(get_sql_script(layer='tr', split_table='genres') % (data_load_id))
-            # sql_script.append(get_sql_script(layer='tr', split_table='artists_genres') % (data_load_id))
             sql_script += get_sql_script(layer='tr', split_table='genres',data_load_id_param=data_load_id)
             sql_script += get_sql_script(layer='tr', split_table='artists_genres',data_load_id_param=data_load_id)
 
@@ -222,18 +219,10 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
         data_load_id = self.get_data_load_id(self.file)
         self.control_value += data_load_id
 
-        # sql_script = [sql for sql in get_sql_script(layer='ds',file=self.file).split(';') if sql != '\n']
         sql_script = get_sql_script(layer='ds',file=self.file)
         
         # split logic for data normalization
         if self.file.split('_')[0] == 'artists':
-
-            # for sql in get_sql_script(layer='ds', split_table='genres').split(';'):
-            #     if sql != '\n':
-            #         sql_script.append(sql)
-            # for sql in get_sql_script(layer='ds', split_table='artists_genres').split(';'):
-            #     if sql != '\n':
-            #         sql_script.append(sql)
             sql_script += get_sql_script(layer='ds', split_table='genres')
             sql_script += get_sql_script(layer='ds', split_table='artists_genres')
 
@@ -262,6 +251,17 @@ class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
         for file in self.files_to_process:
             yield DSLoadTask(file=file)
 
-    # TODO: fix me
-    # def run(self):
-    #     unregister load
+    def run(self):
+        # unregister files loaded by pipeline
+        sql = """
+            UPDATE etl_control
+            SET status = 'finished'
+            WHERE file_name = '{file_name}'
+            AND data_load_id = {data_load_id}
+            """
+        for file in self.files_to_process:
+            data_load_id = self.get_data_load_id(file)
+            connector = MariaDBConnector()
+            with connector:
+                connector.execute([sql.format(file_name=file,data_load_id=data_load_id)])
+            logger.info(f"{file} was unregistred with status finished under id:{data_load_id}")
