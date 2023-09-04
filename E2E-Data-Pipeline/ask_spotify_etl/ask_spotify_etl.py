@@ -73,11 +73,20 @@ def copy_files() -> list[str]:
     return unprocessed_files
 
 
+def housekeeping(landing_zone_files):
+    """delete processed files from app landing_zone"""
+    file_landing_zone = config.get('path', 'file_landing_zone')
+
+    for file in landing_zone_files:
+        os.remove(os.path.join(file_landing_zone, file))
+        logger.info(f"{file} is removed by housekeeping")
+
+
 def start_luigi(unprocessed_files):
     """start luigi pipeline. get result status of the pipeline exection."""
 
     logger.info(f'luigi will start for {unprocessed_files}')
-    luigi_run_result = luigi.build(
+    luigi_pipeline_result = luigi.build(
         [AskSpotifyPipeline(unprocessed_files)],
         detailed_summary=True,
         local_scheduler=True,
@@ -86,6 +95,9 @@ def start_luigi(unprocessed_files):
 
     logger.info('all luigi pipelines are done')
 
+    if luigi_pipeline_result.status == luigi.LuigiStatusCode.SUCCESS:
+        logger.info(f"clean up landing zone from: {unprocessed_files}")
+        housekeeping(unprocessed_files)
 
 def main():
     """infinite app orchestration"""
