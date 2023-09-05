@@ -3,6 +3,7 @@ import csv
 import logging
 import os
 import luigi
+import hashlib
 
 from luigi.contrib.mysqldb import MySqlTarget
 from ask_spotify_etl_config import Config
@@ -134,7 +135,10 @@ class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.table = __class__.__name__
-        self.control_value = self.table+':'+LuigiMaridbTarget.pipeline_files_control_value
+        # self.control_value = self.table+':'+LuigiMaridbTarget.pipeline_files_control_value
+        self.control_value = self.table + \
+                            ':' + \
+                            hashlib.md5(LuigiMaridbTarget.pipeline_files_control_value.encode('utf-8')).hexdigest()
 
     def requires(self):
         return LuigiMaridbTarget.all_LA_dependent_tasks
