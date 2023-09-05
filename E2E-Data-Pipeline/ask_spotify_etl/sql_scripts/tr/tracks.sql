@@ -1,5 +1,3 @@
-TRUNCATE TABLE tr_tracks;
-
 INSERT
 	INTO
 	tr_tracks

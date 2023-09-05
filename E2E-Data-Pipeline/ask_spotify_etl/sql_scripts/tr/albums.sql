@@ -1,5 +1,3 @@
-TRUNCATE TABLE tr_albums;
-
 INSERT
 	INTO
 	tr_albums (album_id,

@@ -7,7 +7,7 @@ import luigi
 from luigi.contrib.mysqldb import MySqlTarget
 from ask_spotify_etl_config import Config
 from db_connector.mariadb_connector import MariaDBConnector
-from sql_scripts.get_sql_script import get_sql_script
+from sql_scripts.get_sql_script import get_sql_script, get_truncate
 
 
 project_root = os.path.dirname(os.path.abspath(__file__))
@@ -138,6 +138,25 @@ class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
 
     def requires(self):
         return LuigiMaridbTarget.all_LA_dependent_tasks
+
+    def run(self):
+        """truncate TR layer before starting TR load"""
+
+        for file in LuigiMaridbTarget.pipeline_files_control_value.split('-'):
+            table = [file.split('_')[0]]
+            truncate_sql = get_truncate(layer='tr', file=file)
+            if table[0] == 'artists':
+                truncate_sql += get_truncate(layer='tr', split_table='genres')
+                truncate_sql += get_truncate(layer='tr', split_table='artists_genres')
+                table.append('genres')
+                table.append('artists_genres')
+
+            db_connector = MariaDBConnector()
+            with db_connector:
+                db_connector.execute(truncate_sql)
+                logger.info(f"truncated tables on TR layer: {table}")
+
+        super().run()
 
 class TRLoadTask(LuigiMaridbTarget, luigi.Task):
 

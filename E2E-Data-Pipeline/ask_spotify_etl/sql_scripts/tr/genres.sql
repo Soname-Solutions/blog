@@ -1,5 +1,3 @@
-TRUNCATE TABLE tr_genres;
-
 INSERT
 	INTO
 	tr_genres(genre_id,

@@ -1,5 +1,3 @@
-TRUNCATE TABLE tr_artists_genres;
-
 INSERT
 	INTO
 	tr_artists_genres (genre_id,
