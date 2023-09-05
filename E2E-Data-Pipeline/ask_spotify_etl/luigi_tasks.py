@@ -130,7 +130,6 @@ class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
     make sure that all LA tasks are done, before TR load.
     reason: FK dependencies"""
 
-    all_LA_dependent_tasks = luigi.Parameter()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -138,22 +137,22 @@ class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
         self.control_value = self.table+':'+LuigiMaridbTarget.pipeline_files_control_value
 
     def requires(self):
-        return self.all_LA_dependent_tasks
+        return LuigiMaridbTarget.all_LA_dependent_tasks
 
 class TRLoadTask(LuigiMaridbTarget, luigi.Task):
 
     file = luigi.Parameter()
-    all_LA_dependent_tasks = []
+    LuigiMaridbTarget.all_LA_dependent_tasks = []
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.file = self.file
         self.control_value = f'{__class__.__name__}:{self.file}:'
         self.table = f"tr_{self.file.split('_')[0]}"
-        TRLoadTask.all_LA_dependent_tasks.append(LALoadTask(file=self.file))
+        LuigiMaridbTarget.all_LA_dependent_tasks.append(LALoadTask(file=self.file))
 
     def requires(self):
-        return LACompleteGateway(TRLoadTask.all_LA_dependent_tasks)
+        return LACompleteGateway()
 
     @property
     def priority(self):
