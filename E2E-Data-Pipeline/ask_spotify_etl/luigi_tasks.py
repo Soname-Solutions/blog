@@ -2,8 +2,8 @@
 import csv
 import logging
 import os
-import luigi
 import hashlib
+import luigi
 
 from luigi.contrib.mysqldb import MySqlTarget
 from ask_spotify_etl_config import Config
@@ -18,7 +18,11 @@ config = Config()
 
 
 class LuigiMaridbTarget():
-    """parent class for ETL Luigi tasks"""
+    """ Parent class for all ETL Luigi tasks of the pipeline. 
+        - Must be enherited by all tasks classes and RUN to be executed (super().run())
+        - Takes care of Luigi tasks status control on Database.
+        - Database control table: table_updates.
+    """
 
     pipeline_files_control_value = ''
 
@@ -52,6 +56,10 @@ class LuigiMaridbTarget():
 
 
 class ETLControlRegistration(LuigiMaridbTarget, luigi.Task):
+    """ Beginning of the data load.
+        Registration of file and generation of data_load_id.
+        Run method: Data_load_id is returned as a control value for the file load.
+    """
 
     file = luigi.Parameter()
 
@@ -63,10 +71,7 @@ class ETLControlRegistration(LuigiMaridbTarget, luigi.Task):
 
 
     def run(self):
-        """ register files.csv in etl_control table.
-            data_load_id is returned as a control value for the file load"""
-
-        sql_register = [f"insert into etl_control (file_name, status) values ('{self.file}', 'in progress')"]   
+        sql_register = [f"insert into etl_control (file_name, status) values ('{self.file}', 'in progress')"]
 
         connector = MariaDBConnector()
         with connector:
@@ -81,7 +86,8 @@ class ETLControlRegistration(LuigiMaridbTarget, luigi.Task):
 
 
 class LALoadTask(LuigiMaridbTarget, luigi.Task):
-    """ingest data from csv file in db dynamicly relying on patterns"""
+    """ Data load: csv >> la_table
+        - Ingest data from csv file in db dynamicly relying on patterns"""
 
     file = luigi.Parameter()
 
@@ -127,15 +133,15 @@ class LALoadTask(LuigiMaridbTarget, luigi.Task):
 
 
 class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
-    """gateway task.
-    make sure that all LA tasks are done, before TR load.
-    reason: FK dependencies"""
-
+    """ Gateway task.
+        - Make sure that all LA tasks are done, before TR load.
+            - reason: FK dependencies
+        - TRUNCATE tr_tables as a preparation before TR load.
+    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.table = __class__.__name__
-        # self.control_value = self.table+':'+LuigiMaridbTarget.pipeline_files_control_value
         self.control_value = self.table + \
                             ':' + \
                             hashlib.md5(LuigiMaridbTarget.pipeline_files_control_value.encode('utf-8')).hexdigest()
@@ -163,6 +169,10 @@ class LACompleteGateway(LuigiMaridbTarget, luigi.Task):
         super().run()
 
 class TRLoadTask(LuigiMaridbTarget, luigi.Task):
+    """ Data load: la >> tr.
+        type casting, data split, generation of surrogate keys.
+        incremental load.
+        """
 
     file = luigi.Parameter()
     LuigiMaridbTarget.all_LA_dependent_tasks = []
@@ -188,15 +198,10 @@ class TRLoadTask(LuigiMaridbTarget, luigi.Task):
             return 80
 
     def run(self):
-        """ data load: la >> tr.
-            type casting, data split, generation of surrogate keys.
-            incremental load.
-        """
         data_load_id = self.get_data_load_id(self.file)
         self.control_value += data_load_id
 
         sql_script = get_sql_script(layer='tr',file=self.file,data_load_id_param=data_load_id)
-
 
         # split logic for data normalization
         if self.file.split('_')[0] == 'artists':
@@ -214,6 +219,11 @@ class TRLoadTask(LuigiMaridbTarget, luigi.Task):
 
 
 class DSLoadTask(LuigiMaridbTarget, luigi.Task):
+    """ Data load: tr >> ds.
+        INSERT for new data.
+        UPDATE for existing data.
+        No history is build.
+    """
 
     file = luigi.Parameter()
 
@@ -226,19 +236,17 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
     def requires(self):
         return TRLoadTask(file=self.file)
 
-    @property
-    def priority(self):
-        """control on the order of execution of available tasks"""
-        if self.file.split('_')[0] == 'artists':
-            return 100
-        elif self.file.split('_')[0] == 'albums':
-            return 90
-        elif self.file.split('_')[0] == 'tracks':
-            return 80
+    # @property
+    # def priority(self):
+    #     """control on the order of execution of available tasks"""
+    #     if self.file.split('_')[0] == 'artists':
+    #         return 100
+    #     elif self.file.split('_')[0] == 'albums':
+    #         return 90
+    #     elif self.file.split('_')[0] == 'tracks':
+    #         return 80
 
     def run(self):
-        """ data load: tr >> ds.
-        """
         data_load_id = self.get_data_load_id(self.file)
         self.control_value += data_load_id
 
@@ -259,9 +267,11 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
 
 
 class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
-    """pipeline reversed entry point."""
-
-    files_to_process = luigi.ListParameter()
+    """ Pipeline reversed entry point.
+        - executed as a last task of the pipeline.
+        - takes care of file load unregistration in etl_control table.
+    """
+    files_to_process: list[str] = luigi.ListParameter()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
