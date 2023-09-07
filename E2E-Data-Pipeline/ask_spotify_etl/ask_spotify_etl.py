@@ -1,3 +1,4 @@
+import argparse
 import os
 import sys
 import shutil
@@ -82,14 +83,19 @@ def housekeeping(landing_zone_files):
         logger.info(f"{file} is removed by housekeeping")
 
 
-def start_luigi(unprocessed_files):
+def start_luigi(unprocessed_files: list[str], dev_mode: bool):
     """start luigi pipeline. get result status of the pipeline exection."""
 
     logger.info(f'luigi will start for {unprocessed_files}')
+
+    use_local_scheduler = dev_mode
+    if not use_local_scheduler:
+        os.environ['LUIGI_CONFIG_PATH'] = config.get('path','luigi_scheduler_conf')
+
     luigi_pipeline_result = luigi.build(
         [AskSpotifyPipeline(unprocessed_files)],
         detailed_summary=True,
-        local_scheduler=True,
+        local_scheduler=use_local_scheduler,
         logging_conf_file=config.get('path','logging_file')
         )
 
@@ -99,7 +105,7 @@ def start_luigi(unprocessed_files):
         logger.info(f"clean up landing zone from: {unprocessed_files}")
         housekeeping(unprocessed_files)
 
-def main():
+def main(dev_mode: bool = False):
     """infinite app orchestration"""
 
     logger.info("start ask_spotify_etl app")
@@ -107,11 +113,21 @@ def main():
     while True:
         unprocessed_files = copy_files()
         if unprocessed_files:
-            start_luigi(unprocessed_files)
+            start_luigi(unprocessed_files=unprocessed_files, dev_mode=dev_mode)
         else:
             logger.info("no files to start luigi")
         time.sleep(int(config.get('general', 'sleep_time')))
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(
+        description="ASK SPOTIFY ETL PIPELINE"
+    )
+
+    parser.add_argument("-d",
+                        "--dev",
+                        action="store_true",
+                        help="run pipeline on dev using luigi local scheduler")
+    args = parser.parse_args()
+
+    main(dev_mode=args.dev)
