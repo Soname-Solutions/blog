@@ -1,0 +1,27 @@
+Parameters:
+  EnvironmentName:
+    Description: An environment name that is prefixed to resource names
+    Type: String
+    Default: glueintsessionsdemo
+
+Resources:
+  GlueIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "iamr-${EnvironmentName}"
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - glue.amazonaws.com
+          Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+  
+Outputs:
+  GlueRoleArn:
+    Description: Arn of IAM Role used by Glue Interactive sessions
+    Value: !GetAtt GlueIAMRole.Arn

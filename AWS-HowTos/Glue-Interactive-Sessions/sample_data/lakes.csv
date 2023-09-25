@@ -1,0 +1,51 @@
+id,lake_name,continent,water_volume,height_above_the_sea_level,country
+1,Lake Geneva,Europe,89.3,372,Switzerland,
+2,Superior,North America,1170,183,Canada
+3,Victoria,Africa,2750,1137,Tanzania
+4,Huron,North America,3540,176,Canada
+5,Michigan,North America,4910,177,United States
+6,Tanganyika,Africa,1820,773,Burundi
+7,Baikal,Asia,23600,455,Russia
+8,Great Bear,North America,2290,156,Canada
+9,Malawi,Africa,2210,470,Malawi
+10,Great Slave,North America,2830,156,Canada
+11,Eyre,Australia,819,15,Australia
+12,Winnipeg,North America,2450,217,Canada
+13,Ontario,North America,1640,74,Canada
+14,Balkhash,Asia,2150,340,Kazakhstan
+15,Albert,North America,1740,646,Canada
+16,Mweru,Africa,560,917,Zambia
+17,Issyk-Kul,Asia,1730,1609,Kyrgyzstan
+18,Urmia,Asia,3080,1278,Iran
+19,Titicaca,South America,8930,3812,Peru
+20,Maracaibo,South America,553,0,Venezuela
+21,Nicaragua,North America,1770,32,Nicaragua
+22,Athabasca,North America,792,213,Canada
+23,Taihu,Asia,803,3,China
+24,Great Salt,North America,319,1280,United States
+25,Nipigon,North America,160,260,Canada
+26,Thun,Europe,0.00147,558,Switzerland
+27,Como,Europe,405,199,Italy
+28,Skadar,Europe,0.005,6,Montenegro
+29,Alberta,North America,71.4,230,Canada
+30,Dead Sea,Asia,340,430,Israel
+31,Mead,North America,2850,372,United States
+32,Winnibigoshish,North America,13.6,413,United States
+33,Balaton,Europe,1.3,104,Hungary
+34,Kivu,Africa,500,1460,Democratic Republic of the Congo
+35,Mj�sa,Europe,5.66,123,Norway
+36,V�ttern,Europe,15.3,89,Sweden
+37,Taupo,Oceania,595,356,New Zealand
+38,Chad,Africa,150,280,Chad/Niger/Nigeria/Cameroon
+39,Constance,Europe,54,395,Germany
+40,Storsj�n,Europe,3.05,297,Sweden
+41,Ladoga,Europe,837,5,Russia
+42,Onega,Europe,292,33,Russia
+43,Torrens,Oceania,1.35,7,Australia
+44,Aral Sea,Asia,10900,0,Kazakhstan/Uzbekistan/Turkmenistan
+45,Albert,Europe,700,1,Sweden
+46,Inari,Europe,9.28,119,Finland
+47,Vanern,Europe,1530,44,Sweden
+48,Peipus,Europe,9.28,30,Estonia/Russia
+49,Svitiaz,Europe,250,152,Ukraine
+50,P�ij�nne,Europe,910,78,Finland
