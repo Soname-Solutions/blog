@@ -236,15 +236,6 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
     def requires(self):
         return TRLoadTask(file=self.file)
 
-    # @property
-    # def priority(self):
-    #     """control on the order of execution of available tasks"""
-    #     if self.file.split('_')[0] == 'artists':
-    #         return 100
-    #     elif self.file.split('_')[0] == 'albums':
-    #         return 90
-    #     elif self.file.split('_')[0] == 'tracks':
-    #         return 80
 
     def run(self):
         data_load_id = self.get_data_load_id(self.file)

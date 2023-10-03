@@ -2,18 +2,7 @@
 
 import configparser
 import os
-
-
-def singleton(cls, *args, **kw):
-    """singleton pattern decorator function"""
-    instances = {}
-
-    def wrapper(*args, **kw):
-        if cls not in instances:
-            instances[cls] = cls(*args, **kw)
-        return instances[cls]
-
-    return wrapper
+from singleton_decorator import singleton
 
 
 @singleton

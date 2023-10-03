@@ -2,7 +2,9 @@ from ask_spotify_etl_config import Config
 
 class DatabaseConnector:
     """ 
-    blah
+    db connector parent class.
+    implemented as a context manager.
+    to me inherited by child classes with db specific connection in __enter__ method.
     """
 
     def __init__(self):
@@ -11,11 +13,17 @@ class DatabaseConnector:
         self.cursor = None
 
     def __enter__(self):
-        """to be overridden for specific db connector"""
+        """
+        method is executed when entering the WITH block.
+        responsible for acquiring the necessary resources and setting up the context: DB Connection.
+        To be overridden for specific db connector."""
         return self
 
-    def execute(self, queries: list, params=None):
+    def execute(self, queries: list):
         """
+        SQL queries execution logic.
+        queries: list with sql query(s) is expected [sq(,...)]
+        in case SELECT statement is executed, the values are returned.
         """
 
         records = str()
@@ -34,10 +42,14 @@ class DatabaseConnector:
 
         return records
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        """bar
+    def __exit__(self, type, value, traceback):
         """
-        if exc_tb is None:
+        This method is executed when exiting the with block.
+        If traceback is not passed, the SQL query was executed successfully. The transaction must be committed.
+        otherwise, the transaction must be rolled back.
+        Close the connection.
+        """
+        if traceback is None:
             self.connector.commit()
         else:
             self.connector.rollback()

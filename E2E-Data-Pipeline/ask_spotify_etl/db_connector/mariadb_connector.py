@@ -2,7 +2,9 @@ import mariadb
 from db_connector.db_connector import DatabaseConnector
 
 class MariaDBConnector(DatabaseConnector):
-    """blah
+    """
+        MariaDB specific db connector.
+        Inherited DB Connector as a context manager with SQL execute method.
     """
 
     def __enter__(self):
@@ -14,10 +16,3 @@ class MariaDBConnector(DatabaseConnector):
                                         database=self.database_credentials['database'])
 
         self.cursor = self.connector.cursor()
-
-
-if __name__ == '__main__':
-
-    connector = MariaDBConnector()
-    with connector:
-        pass
