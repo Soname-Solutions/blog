@@ -236,7 +236,6 @@ class DSLoadTask(LuigiMaridbTarget, luigi.Task):
     def requires(self):
         return TRLoadTask(file=self.file)
 
-
     def run(self):
         data_load_id = self.get_data_load_id(self.file)
         self.control_value += data_load_id
@@ -271,12 +270,16 @@ class AskSpotifyPipeline(LuigiMaridbTarget, luigi.Task):
         self.table = __class__.__name__
         self.control_value = self.table + LuigiMaridbTarget.pipeline_files_control_value
 
-    def requires(self):
-        for file in self.files_to_process:
-            yield DSLoadTask(file=file)
-
     def run(self):
+        # build Dynamic dependencies
+        # run methond utilized to make sure the scheduling of all DS Task will happen before the execution starts
+        ds_load__dynamic_task_list = []
+        for file in self.files_to_process:
+            ds_load__dynamic_task_list.append(DSLoadTask(file=file))
+        yield ds_load__dynamic_task_list
+
         # unregister files loaded by pipeline
+        # executed after completed dynamic dependencies
         sql = """
             UPDATE etl_control
             SET status = 'finished'
