@@ -1,5 +1,6 @@
 Table etl_control {
-  data_load_id int [primary key, increment]
-  file_name varchar(360) [not null]
+  data_load_id int [increment, unique]
+  file_name varchar(360) [primary key, not null]
+  status varchar(360)
   created_ts timestamp [default: `current_timestamp`]
 }

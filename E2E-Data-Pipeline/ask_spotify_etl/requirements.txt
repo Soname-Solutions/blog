@@ -1,0 +1,17 @@
+asttokens==2.4.0
+colorama==0.4.6
+docutils==0.20.1
+executing==2.0.0
+lockfile==0.12.2
+luigi==3.3.0
+mariadb==1.1.7
+mysql-connector-python==8.1.0
+packaging==23.1
+protobuf==4.21.12
+Pygments==2.16.1
+python-daemon==3.0.1
+python-dateutil==2.8.2
+singleton-decorator==1.0.0
+six==1.16.0
+tenacity==8.2.3
+tornado==6.3.3

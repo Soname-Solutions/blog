@@ -36,7 +36,7 @@ def create_db_connection() -> mariadb.connect:
 
     try:
         conn = mariadb.connect(
-            host="localhost",
+            host="127.0.0.1", #localhost is not working on Mac
             port=3306,
             user=db_user,
             password=db_password,
@@ -63,9 +63,10 @@ def execute_sql(ddl : list) -> list:
 
         except mariadb.Error as error:
             print(f"DDL exectuion error: {error}")
+            print(sql)
             conn.close()
             sys.exit(1)
-
+    conn.commit()
     conn.close()
     return select_output
 
@@ -148,8 +149,10 @@ def create_objects(file_paths: list, deploy_objects_param: bool) -> None:
                 create_statement = ''
 
         if deploy_objects_param:
+            # print(create_sql)
             execute_sql(create_sql)
             print(f'{file} was deployed ...')
+            create_sql = [] # clean up sql list for the next file
 
 
 def db_deployment(  db_objects: str,
@@ -166,12 +169,16 @@ def db_deployment(  db_objects: str,
     create_drop_file(output_drop_file)
     drop_fk_contraints(output_drop_file, drop_objects_param)
 
+    file_paths = []
+
     for root, _, files in os.walk(db_objects):
         if len(files) != 0 and not root.endswith('dbml'):
-            file_paths = [os.path.join(root, file) for file in files]
+            # file_paths = [os.path.join(root, file) for file in files]
+            for file in files:
+                file_paths.append(os.path.join(root, file))
 
-            drop_objects(file_paths, output_drop_file, drop_objects_param)
-            create_objects(file_paths, deploy_objects_param)
+    drop_objects(file_paths, output_drop_file, drop_objects_param)
+    create_objects(sorted(file_paths), deploy_objects_param)
 
 
 
