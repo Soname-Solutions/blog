@@ -36,7 +36,7 @@ def create_db_connection() -> mariadb.connect:
 
     try:
         conn = mariadb.connect(
-            host="127.0.0.1", #localhost is not working on Mac
+            host="localhost", # "127.0.0.1"
             port=3306,
             user=db_user,
             password=db_password,
