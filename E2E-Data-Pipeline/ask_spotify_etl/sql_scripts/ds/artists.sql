@@ -9,29 +9,6 @@ INSERT
 	artist_followers,
 	hdif,
 	data_load_id)
-WITH CTE AS (
-	SELECT
-		tr.artist_id,
-		tr.artist_src_id,
-		tr.artist_nm,
-		tr.artist_popularity,
-		tr.artist_followers,
-		tr.hdif,
-		tr.data_load_id,
-		ROW_NUMBER() OVER(PARTITION BY tr.artist_id
-	ORDER BY
-		STR_TO_DATE(SUBSTRING(ec.file_name FROM -14 FOR 10), '%Y_%m_%d') DESC) rn
-	FROM
-		tr_artists tr
-	LEFT JOIN ds_artists ds
-	ON
-		tr.artist_id = ds.artist_id
-	INNER JOIN etl_control ec 
-	ON
-		tr.data_load_id = ec.data_load_id
-	WHERE
-		ds.artist_id IS NULL
-)
 SELECT
 	tr.artist_id,
 	tr.artist_src_id,
@@ -41,35 +18,28 @@ SELECT
 	tr.hdif,
 	tr.data_load_id
 FROM
-	CTE AS tr
+	incr_v_artists AS tr
 WHERE
-	tr.rn = 1;
+	ds_artist_id IS NULL
+	AND tr.rn = 1;
 
 
 UPDATE
 	ds_artists ds,
 	(
-	SELECT
-		tr.artist_id,
-		tr.artist_src_id,
-		tr.artist_nm,
-		tr.artist_popularity,
-		tr.artist_followers,
-		tr.hdif,
-		tr.data_load_id,
-		ROW_NUMBER() OVER(PARTITION BY tr.artist_id
-	ORDER BY
-		STR_TO_DATE(SUBSTRING(ec.file_name FROM -14 FOR 10), '%Y_%m_%d') DESC) rn
-	FROM
-		tr_artists tr
-	LEFT JOIN ds_artists ds
-		ON
-		tr.artist_id = ds.artist_id
-	INNER JOIN etl_control ec 
-		ON
-		tr.data_load_id = ec.data_load_id
-	WHERE
-		ds.artist_id IS NOT NULL
+SELECT
+	tr.artist_id,
+	tr.artist_src_id,
+	tr.artist_nm,
+	tr.artist_popularity,
+	tr.artist_followers,
+	tr.hdif,
+	tr.data_load_id
+FROM
+	incr_v_artists AS tr
+WHERE
+	ds_artist_id IS NOT NULL
+	AND tr.rn = 1
 	) tr_data
 SET 
 	ds.artist_id = tr_data.artist_id,
@@ -81,7 +51,6 @@ SET
 	ds.data_load_id = tr_data.data_load_id
 WHERE
 	ds.artist_id = tr_data.artist_id
-	AND ds.hdif != tr_data.hdif
-	AND tr_data.rn = 1;
+	AND ds.hdif != tr_data.hdif;
 
 SET FOREIGN_KEY_CHECKS=1;
