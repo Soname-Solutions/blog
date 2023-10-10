@@ -1,4 +1,4 @@
-from ask_spotify_etl_config import Config
+"""abstract parent class for DB connectors implemented as a ContextManager"""
 
 class DatabaseConnector:
     """ 
@@ -8,7 +8,6 @@ class DatabaseConnector:
     """
 
     def __init__(self):
-        self.database_credentials = Config().get("database.credentials")
         self.connector = None
         self.cursor = None
 
