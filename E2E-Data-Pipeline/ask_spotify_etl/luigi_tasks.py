@@ -50,7 +50,7 @@ class LuigiMaridbTarget():
         sql_get_id = [f"select data_load_id from etl_control ec where file_name = '{file}'"]
         connector = MariaDBConnector()
         with connector:
-            data_load_id = str(connector.execute(sql_get_id)[0][0]) # [(int),] is a return value
+            data_load_id = str(connector.execute(sql_get_id)[0][0][0]) # [[(int),]] is a return value
         return data_load_id
 
 

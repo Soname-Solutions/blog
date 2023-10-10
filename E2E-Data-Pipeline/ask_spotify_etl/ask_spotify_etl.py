@@ -42,7 +42,7 @@ def get_processed_files() -> list[str]:
     with connector:
         processed_files = connector.execute([sql])
 
-    for processed_file in processed_files:
+    for processed_file in processed_files[0]:
         processed_files_list.append(processed_file[0])
 
     return processed_files_list

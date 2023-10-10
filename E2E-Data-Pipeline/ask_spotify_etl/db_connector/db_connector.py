@@ -26,7 +26,7 @@ class DatabaseConnector:
         in case SELECT statement is executed, the values are returned.
         """
 
-        records = str()
+        records = list()
 
         if queries is None:
             return
@@ -36,7 +36,7 @@ class DatabaseConnector:
 
             if query.upper().startswith('SELECT') or query.upper().startswith('WITH'):
                 self.cursor.execute(query)
-                records = self.cursor.fetchall()
+                records.append(self.cursor.fetchall())
             else:
                 self.cursor.execute(query)
 
