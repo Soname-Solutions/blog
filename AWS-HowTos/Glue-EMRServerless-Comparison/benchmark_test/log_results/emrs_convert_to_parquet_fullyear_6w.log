@@ -1,0 +1,433 @@
+2023-12-28 16:39:05 - INFO - Processing test item: {
+    "type": "emr_serverless",
+    "run_name": "emrs_convert_to_parquet_fullyear_6w",
+    "script_name": "emrserverless_scripts/csv_to_parquet.py",
+    "arguments": [
+        "s3-glue-vs-emr-serverless-405389362913",
+        "nyc_rides_2022_csv/",
+        "output/emrs_convert_to_parquet_fullyear/6w/"
+    ],
+    "sparkSubmitParameters": {
+        "spark.hadoop.hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory",
+        "spark.executor.instances": "6",
+        "spark.dynamicAllocation.enabled": "false",
+        "spark.executor.cores": "4",
+        "spark.executor.memory": "16G"
+    }
+}
+2023-12-28 16:39:06 - INFO - Running script emrserverless_scripts/csv_to_parquet.py, using arguments: [s3-glue-vs-emr-serverless-405389362913, nyc_rides_2022_csv/, output/emrs_convert_to_parquet_fullyear/6w/]
+2023-12-28 16:39:07 - INFO - Job Run started. Job Run ID: 00ffrj80nh5l9816
+2023-12-28 16:39:07 - INFO - {'ResponseMetadata': {'RequestId': '165efae5-fd50-4f69-86e4-5f5b6ef23f4c', 'HTTPStatusCode': 200, 'HTTPHeaders': {'date': 'Thu, 28 Dec 2023 13:39:06 GMT', 'content-type': 'application/json', 'content-length': '179', 'connection': 'keep-alive', 'x-amzn-requestid': '165efae5-fd50-4f69-86e4-5f5b6ef23f4c', 'x-amzn-remapped-x-amzn-requestid': 'QqATNHaUFiAEPzg=', 'x-amzn-remapped-content-length': '179', 'x-amzn-remapped-connection': 'keep-alive', 'x-amz-apigw-id': 'QqATNHaUFiAEPzg=', 'x-amzn-trace-id': 'Root=1-658d7a7a-0220d8e9584d1eb76badb438', 'x-amzn-remapped-date': 'Thu, 28 Dec 2023 13:39:06 GMT'}, 'RetryAttempts': 0}, 'applicationId': '00ffm02uu358ji15', 'jobRunId': '00ffrj80nh5l9816', 'arn': 'arn:aws:emr-serverless:eu-central-1:405389362913:/applications/00ffm02uu358ji15/jobruns/00ffrj80nh5l9816'}
+2023-12-28 16:39:07 - INFO - PENDING
+2023-12-28 16:39:09 - INFO - PENDING
+2023-12-28 16:39:11 - INFO - PENDING
+2023-12-28 16:39:13 - INFO - PENDING
+2023-12-28 16:39:15 - INFO - PENDING
+2023-12-28 16:39:18 - INFO - PENDING
+2023-12-28 16:39:20 - INFO - PENDING
+2023-12-28 16:39:22 - INFO - PENDING
+2023-12-28 16:39:24 - INFO - PENDING
+2023-12-28 16:39:26 - INFO - PENDING
+2023-12-28 16:39:28 - INFO - PENDING
+2023-12-28 16:39:30 - INFO - PENDING
+2023-12-28 16:39:32 - INFO - PENDING
+2023-12-28 16:39:35 - INFO - PENDING
+2023-12-28 16:39:37 - INFO - PENDING
+2023-12-28 16:39:39 - INFO - PENDING
+2023-12-28 16:39:41 - INFO - PENDING
+2023-12-28 16:39:43 - INFO - PENDING
+2023-12-28 16:39:45 - INFO - PENDING
+2023-12-28 16:39:47 - INFO - PENDING
+2023-12-28 16:39:50 - INFO - PENDING
+2023-12-28 16:39:52 - INFO - PENDING
+2023-12-28 16:39:54 - INFO - PENDING
+2023-12-28 16:39:56 - INFO - PENDING
+2023-12-28 16:39:58 - INFO - PENDING
+2023-12-28 16:40:00 - INFO - PENDING
+2023-12-28 16:40:02 - INFO - PENDING
+2023-12-28 16:40:05 - INFO - PENDING
+2023-12-28 16:40:07 - INFO - PENDING
+2023-12-28 16:40:09 - INFO - State PENDING: 61.9274 seconds
+2023-12-28 16:40:09 - INFO - SCHEDULED
+2023-12-28 16:40:11 - INFO - SCHEDULED
+2023-12-28 16:40:13 - INFO - SCHEDULED
+2023-12-28 16:40:15 - INFO - SCHEDULED
+2023-12-28 16:40:17 - INFO - SCHEDULED
+2023-12-28 16:40:19 - INFO - SCHEDULED
+2023-12-28 16:40:22 - INFO - SCHEDULED
+2023-12-28 16:40:24 - INFO - SCHEDULED
+2023-12-28 16:40:26 - INFO - SCHEDULED
+2023-12-28 16:40:28 - INFO - SCHEDULED
+2023-12-28 16:40:30 - INFO - SCHEDULED
+2023-12-28 16:40:32 - INFO - SCHEDULED
+2023-12-28 16:40:34 - INFO - SCHEDULED
+2023-12-28 16:40:36 - INFO - SCHEDULED
+2023-12-28 16:40:39 - INFO - SCHEDULED
+2023-12-28 16:40:41 - INFO - SCHEDULED
+2023-12-28 16:40:43 - INFO - SCHEDULED
+2023-12-28 16:40:45 - INFO - SCHEDULED
+2023-12-28 16:40:47 - INFO - SCHEDULED
+2023-12-28 16:40:49 - INFO - State SCHEDULED: 40.440866 seconds
+2023-12-28 16:40:49 - INFO - RUNNING
+2023-12-28 16:40:51 - INFO - RUNNING
+2023-12-28 16:40:54 - INFO - RUNNING
+2023-12-28 16:40:56 - INFO - RUNNING
+2023-12-28 16:40:58 - INFO - RUNNING
+2023-12-28 16:41:00 - INFO - RUNNING
+2023-12-28 16:41:02 - INFO - RUNNING
+2023-12-28 16:41:04 - INFO - RUNNING
+2023-12-28 16:41:06 - INFO - RUNNING
+2023-12-28 16:41:08 - INFO - RUNNING
+2023-12-28 16:41:11 - INFO - RUNNING
+2023-12-28 16:41:13 - INFO - RUNNING
+2023-12-28 16:41:15 - INFO - RUNNING
+2023-12-28 16:41:17 - INFO - RUNNING
+2023-12-28 16:41:19 - INFO - RUNNING
+2023-12-28 16:41:21 - INFO - RUNNING
+2023-12-28 16:41:23 - INFO - RUNNING
+2023-12-28 16:41:25 - INFO - RUNNING
+2023-12-28 16:41:28 - INFO - RUNNING
+2023-12-28 16:41:30 - INFO - RUNNING
+2023-12-28 16:41:32 - INFO - RUNNING
+2023-12-28 16:41:34 - INFO - RUNNING
+2023-12-28 16:41:36 - INFO - RUNNING
+2023-12-28 16:41:38 - INFO - RUNNING
+2023-12-28 16:41:40 - INFO - RUNNING
+2023-12-28 16:41:43 - INFO - RUNNING
+2023-12-28 16:41:45 - INFO - RUNNING
+2023-12-28 16:41:47 - INFO - RUNNING
+2023-12-28 16:41:49 - INFO - RUNNING
+2023-12-28 16:41:51 - INFO - RUNNING
+2023-12-28 16:41:53 - INFO - RUNNING
+2023-12-28 16:41:55 - INFO - RUNNING
+2023-12-28 16:41:57 - INFO - RUNNING
+2023-12-28 16:42:00 - INFO - RUNNING
+2023-12-28 16:42:02 - INFO - RUNNING
+2023-12-28 16:42:04 - INFO - RUNNING
+2023-12-28 16:42:06 - INFO - RUNNING
+2023-12-28 16:42:08 - INFO - RUNNING
+2023-12-28 16:42:10 - INFO - RUNNING
+2023-12-28 16:42:12 - INFO - RUNNING
+2023-12-28 16:42:15 - INFO - RUNNING
+2023-12-28 16:42:17 - INFO - RUNNING
+2023-12-28 16:42:19 - INFO - RUNNING
+2023-12-28 16:42:21 - INFO - RUNNING
+2023-12-28 16:42:23 - INFO - RUNNING
+2023-12-28 16:42:25 - INFO - RUNNING
+2023-12-28 16:42:27 - INFO - RUNNING
+2023-12-28 16:42:30 - INFO - RUNNING
+2023-12-28 16:42:32 - INFO - RUNNING
+2023-12-28 16:42:34 - INFO - RUNNING
+2023-12-28 16:42:36 - INFO - State RUNNING: 106.735159 seconds
+2023-12-28 16:42:36 - INFO - SUCCESS
+2023-12-28 16:42:40 - INFO - Waiting for totalResourceUtilization to be populated.
+2023-12-28 16:42:42 - INFO - Waiting for totalResourceUtilization to be populated.
+2023-12-28 16:42:43 - INFO - Total Running Time: 216.6569 seconds
+2023-12-28 16:42:43 - INFO - Output:
+{
+    "state_durations": {
+        "PENDING": 61.9274,
+        "SCHEDULED": 40.440866,
+        "RUNNING": 106.735159,
+        "SUCCESS": 2.002519
+    },
+    "totalResourceUtilization": {
+        "vCPUHour": 0.766,
+        "memoryGBHour": 3.386,
+        "storageGBHour": 3.828
+    },
+    "billedResourceUtilization": {},
+    "totalExecutionDurationSeconds": 105,
+    "dashboard_url": "https://j-00ffrj80nh5l9816.dashboard.emr-serverless.eu-central-1.amazonaws.com/?authToken=eDAxUTJGDKS9GHhX1x7dPTZKOH3gMTX0Acluya89S2xlnKzeoZDmkem7zsoHpoNtMzPqTKHAjtFb5I6aq8W8ZEKCJ77g_UAbWO0x1LPxYX5G3MWHpaIB4md8YRiEoXUCVyW3oOI3BKjA5Omc6C95QRurnTM2qR96nanEcg7BAhLwRV7JYU_-S0B4TI4vP-5w5gA2AaBPLAYSjn-dRJi4lcm1EnQEuu3_9mQm-5NhHriS-GhPoDkAICaWMjpr-PcJxmUwYj3G5BzY5MsbTu1FHL1CTnglgIcKwDXL6tQMCn7eZ2H4X36d_y3FAiZ_gD5AMQKugn4fJBnN4_I52690tlv8y4hy97o8dmudXtv4_AIVlebiBLbxgoFKmaWfq5Z225MUKrJ2LrQojt9dYR5KZ8wYlcXtQWWrpOab_M8fulixSQ1YhPWEoTMbaEq27-wCsvMhehc1EIVFy-lLZdaKbUL_mIq0UshLDUe2S2iEI4eO-cF5_oTJxDzxBZvgLsf6KZhhiJwfdmZcZqOo0zHB0EBdC7TAEX-lptdOhB_5MH931lg6EF_hn0fvk3Umk8watp361PuKKhQVhOAHnjSWwBNForrBFEegANd9i1FiiQrB0NRlt_ic2E7xDbSVReV73WIa6yHdam8oO12QF9VYPVIV6xNefDvhjOjN8ozadSwT6V1JXv1gn5ZxOEDVfpdtkC-baJw8rvduW7AcizbzWR5doxh5uYysD5HIF7rrKRjwh3e8LPYL230f-qyxXaHvFT8H2IEwGtVhcD-AKNTe91vUnvr2dyYhQfnyyeFcAtRBXlnlkZEz70uph5NB0oXe5h5mXvwO9COTX0OUOO8SkyBNFCdg5dNqJ9yAMVVxzhoJWS_o1DmOvm0QpQWC7gaTu3bFCZ9ZHnthP_lIOtWgrWiJNCVBktyNNiZSOSjalO8vS8p__aE21djgaMqbV0m2Sx3yhS2eTyvxM35pudjgLztyzrD92pL_6nqalLDHmbm3i9I.eyJraWQiOiJBUUlCQUhoU0I5bGRCekFEOE5JV3BFcC81RExoZUhJcHdFRmtWOUVUQmNuTlM1OTlXQUhCWFROT3hubFBSdDJhdVJNZnoxdWpBQUFBb2pDQm53WUpLb1pJaHZjTkFRY0dvSUdSTUlHT0FnRUFNSUdJQmdrcWhraUc5dzBCQndFd0hnWUpZSVpJQVdVREJBRXVNQkVFREFHZDBmMmpNY1Y3K1p5elR3SUJFSUJicmtHTDFRVmFDVElRZCs1VzYyajg3aUFRNlV0R2FheVRkK2VkM3JRc1dCUlFPQkEwTCtaV1ZQTmsweXRYYmRUVWVTQ1BqQmk2cE1TSS9SWUEyVFFldzlpY0o4NE83WlcweVRtWmRmeS9ldjNtM0RqWFhkZ0tFZTMrc2c9PSJ9"
+}
+2023-12-28 17:26:03 - INFO - Processing test item: {
+    "type": "emr_serverless",
+    "run_name": "emrs_convert_to_parquet_fullyear_6w",
+    "script_name": "emrserverless_scripts/csv_to_parquet.py",
+    "arguments": [
+        "s3-glue-vs-emr-serverless-405389362913",
+        "nyc_rides_2022_csv/",
+        "output/emrs_convert_to_parquet_fullyear/6w/"
+    ],
+    "sparkSubmitParameters": {
+        "spark.hadoop.hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory",
+        "spark.executor.instances": "6",
+        "spark.dynamicAllocation.enabled": "false",
+        "spark.executor.cores": "4",
+        "spark.executor.memory": "16G"
+    }
+}
+2023-12-28 17:26:04 - INFO - Running script emrserverless_scripts/csv_to_parquet.py, using arguments: [s3-glue-vs-emr-serverless-405389362913, nyc_rides_2022_csv/, output/emrs_convert_to_parquet_fullyear/6w/]
+2023-12-28 17:26:05 - INFO - Job Run started. Job Run ID: 00ffrk2so19eu816
+2023-12-28 17:26:05 - INFO - {'ResponseMetadata': {'RequestId': '654529fe-bc2a-433d-a775-ac28ad593419', 'HTTPStatusCode': 200, 'HTTPHeaders': {'date': 'Thu, 28 Dec 2023 14:26:04 GMT', 'content-type': 'application/json', 'content-length': '179', 'connection': 'keep-alive', 'x-amzn-requestid': '654529fe-bc2a-433d-a775-ac28ad593419', 'x-amzn-remapped-x-amzn-requestid': 'QqHLiEf5liAEaPg=', 'x-amzn-remapped-content-length': '179', 'x-amzn-remapped-connection': 'keep-alive', 'x-amz-apigw-id': 'QqHLiEf5liAEaPg=', 'x-amzn-trace-id': 'Root=1-658d857c-11399a044da5a04d053fa90e', 'x-amzn-remapped-date': 'Thu, 28 Dec 2023 14:26:04 GMT'}, 'RetryAttempts': 0}, 'applicationId': '00ffm02uu358ji15', 'jobRunId': '00ffrk2so19eu816', 'arn': 'arn:aws:emr-serverless:eu-central-1:405389362913:/applications/00ffm02uu358ji15/jobruns/00ffrk2so19eu816'}
+2023-12-28 17:26:05 - INFO - PENDING
+2023-12-28 17:26:07 - INFO - PENDING
+2023-12-28 17:26:09 - INFO - PENDING
+2023-12-28 17:26:11 - INFO - PENDING
+2023-12-28 17:26:14 - INFO - PENDING
+2023-12-28 17:26:16 - INFO - PENDING
+2023-12-28 17:26:18 - INFO - PENDING
+2023-12-28 17:26:20 - INFO - PENDING
+2023-12-28 17:26:22 - INFO - PENDING
+2023-12-28 17:26:24 - INFO - PENDING
+2023-12-28 17:26:26 - INFO - PENDING
+2023-12-28 17:26:28 - INFO - PENDING
+2023-12-28 17:26:30 - INFO - PENDING
+2023-12-28 17:26:33 - INFO - PENDING
+2023-12-28 17:26:35 - INFO - PENDING
+2023-12-28 17:26:37 - INFO - PENDING
+2023-12-28 17:26:39 - INFO - PENDING
+2023-12-28 17:26:41 - INFO - PENDING
+2023-12-28 17:26:43 - INFO - PENDING
+2023-12-28 17:26:45 - INFO - PENDING
+2023-12-28 17:26:48 - INFO - PENDING
+2023-12-28 17:26:50 - INFO - PENDING
+2023-12-28 17:26:52 - INFO - PENDING
+2023-12-28 17:26:54 - INFO - PENDING
+2023-12-28 17:26:56 - INFO - PENDING
+2023-12-28 17:26:58 - INFO - PENDING
+2023-12-28 17:27:00 - INFO - PENDING
+2023-12-28 17:27:02 - INFO - PENDING
+2023-12-28 17:27:05 - INFO - PENDING
+2023-12-28 17:27:07 - INFO - PENDING
+2023-12-28 17:27:09 - INFO - PENDING
+2023-12-28 17:27:11 - INFO - State PENDING: 65.92182 seconds
+2023-12-28 17:27:11 - INFO - SCHEDULED
+2023-12-28 17:27:13 - INFO - SCHEDULED
+2023-12-28 17:27:15 - INFO - SCHEDULED
+2023-12-28 17:27:18 - INFO - SCHEDULED
+2023-12-28 17:27:20 - INFO - SCHEDULED
+2023-12-28 17:27:22 - INFO - SCHEDULED
+2023-12-28 17:27:24 - INFO - SCHEDULED
+2023-12-28 17:27:27 - INFO - SCHEDULED
+2023-12-28 17:27:29 - INFO - SCHEDULED
+2023-12-28 17:27:31 - INFO - SCHEDULED
+2023-12-28 17:27:33 - INFO - SCHEDULED
+2023-12-28 17:27:35 - INFO - SCHEDULED
+2023-12-28 17:27:37 - INFO - SCHEDULED
+2023-12-28 17:27:39 - INFO - SCHEDULED
+2023-12-28 17:27:42 - INFO - SCHEDULED
+2023-12-28 17:27:44 - INFO - SCHEDULED
+2023-12-28 17:27:46 - INFO - SCHEDULED
+2023-12-28 17:27:48 - INFO - SCHEDULED
+2023-12-28 17:27:50 - INFO - SCHEDULED
+2023-12-28 17:27:52 - INFO - State SCHEDULED: 41.39229 seconds
+2023-12-28 17:27:52 - INFO - RUNNING
+2023-12-28 17:27:54 - INFO - RUNNING
+2023-12-28 17:27:57 - INFO - RUNNING
+2023-12-28 17:27:59 - INFO - RUNNING
+2023-12-28 17:28:01 - INFO - RUNNING
+2023-12-28 17:28:03 - INFO - RUNNING
+2023-12-28 17:28:05 - INFO - RUNNING
+2023-12-28 17:28:07 - INFO - RUNNING
+2023-12-28 17:28:09 - INFO - RUNNING
+2023-12-28 17:28:11 - INFO - RUNNING
+2023-12-28 17:28:14 - INFO - RUNNING
+2023-12-28 17:28:16 - INFO - RUNNING
+2023-12-28 17:28:18 - INFO - RUNNING
+2023-12-28 17:28:20 - INFO - RUNNING
+2023-12-28 17:28:22 - INFO - RUNNING
+2023-12-28 17:28:24 - INFO - RUNNING
+2023-12-28 17:28:26 - INFO - RUNNING
+2023-12-28 17:28:28 - INFO - RUNNING
+2023-12-28 17:28:31 - INFO - RUNNING
+2023-12-28 17:28:33 - INFO - RUNNING
+2023-12-28 17:28:35 - INFO - RUNNING
+2023-12-28 17:28:37 - INFO - RUNNING
+2023-12-28 17:28:39 - INFO - RUNNING
+2023-12-28 17:28:41 - INFO - RUNNING
+2023-12-28 17:28:43 - INFO - RUNNING
+2023-12-28 17:28:45 - INFO - RUNNING
+2023-12-28 17:28:48 - INFO - RUNNING
+2023-12-28 17:28:50 - INFO - RUNNING
+2023-12-28 17:28:52 - INFO - RUNNING
+2023-12-28 17:28:54 - INFO - RUNNING
+2023-12-28 17:28:56 - INFO - RUNNING
+2023-12-28 17:28:58 - INFO - RUNNING
+2023-12-28 17:29:00 - INFO - RUNNING
+2023-12-28 17:29:02 - INFO - RUNNING
+2023-12-28 17:29:05 - INFO - RUNNING
+2023-12-28 17:29:07 - INFO - RUNNING
+2023-12-28 17:29:09 - INFO - RUNNING
+2023-12-28 17:29:11 - INFO - RUNNING
+2023-12-28 17:29:13 - INFO - RUNNING
+2023-12-28 17:29:15 - INFO - RUNNING
+2023-12-28 17:29:17 - INFO - RUNNING
+2023-12-28 17:29:19 - INFO - RUNNING
+2023-12-28 17:29:22 - INFO - RUNNING
+2023-12-28 17:29:24 - INFO - RUNNING
+2023-12-28 17:29:26 - INFO - RUNNING
+2023-12-28 17:29:28 - INFO - RUNNING
+2023-12-28 17:29:30 - INFO - RUNNING
+2023-12-28 17:29:32 - INFO - RUNNING
+2023-12-28 17:29:34 - INFO - RUNNING
+2023-12-28 17:29:36 - INFO - RUNNING
+2023-12-28 17:29:39 - INFO - State RUNNING: 106.330819 seconds
+2023-12-28 17:29:39 - INFO - SUCCESS
+2023-12-28 17:29:43 - INFO - Waiting for totalResourceUtilization to be populated.
+2023-12-28 17:29:43 - INFO - Total Running Time: 219.2158 seconds
+2023-12-28 17:29:43 - INFO - Output:
+{
+    "state_durations": {
+        "PENDING": 65.92182,
+        "SCHEDULED": 41.39229,
+        "RUNNING": 106.330819,
+        "SUCCESS": 2.001476
+    },
+    "totalResourceUtilization": {
+        "vCPUHour": 0.782,
+        "memoryGBHour": 3.459,
+        "storageGBHour": 3.911
+    },
+    "billedResourceUtilization": {},
+    "totalExecutionDurationSeconds": 108,
+    "dashboard_url": "https://j-00ffrk2so19eu816.dashboard.emr-serverless.eu-central-1.amazonaws.com/?authToken=eDAx88guX8hwlQ9RjfB0Ufo5bidUpn7pdJd8fWKdDWo-b9tBI0f0KHK899Qa_J3XE8AOgZhYMZcON-90qxl_n0r6PzYlRa53qQerpo1fCTbblVDeu7R1e0xpIHOnR_DaWuGgeEYe-oOV16Z3MI9-kSM28QQu8Kewxs6vLpCBMAySqBqFvwmLiQ0f2zDCZmDtRcAiQOJwL1AvDbF81iyWHxXiWtNm2_31JfUhZ2kJNVprT1lzmmY39As6euGJNoiwad_yLpdr6-07TTEBWA12fu4KIe4QJErpuvc64OVskMVO7hzZAVqjkuoiEfkcrvSqFdhZ8utXKQfqXgWCAfddf5c1G6O5MAy-0xZf8lDaSYvWkYszkPFXEdyVZ7vgT2lFYIj0L8h48doDrBa3l304Sr6EpWyY9cFWgg7Lb8F2QBQknGS8rgpbR0ci1jzbAhyWYdWD3WYqwmcSkZLIGHdQ87poCC0eaeiSp_jwCXILz_exY8KJjxYdEhvUoMxLjcRarZ_N4NYmFzsdw8Ls1zzxMFMJydq0Nx6kHZJXvF9nqqTfdsqGhzVTvQDCjUkyunJCn9vo0UR7HaWjnM7-ll07mE75kxyFgtYa6j451ea9guPjyOZQ9NtUPFTfeD2kcqss3vcQdXZ1Km6OG9Q5HRgn1gvaCkDT5qEjCoBerC97w4uiriYK8pXHy5cggOhp2XRG9hDlvqgjqtxdRCJ_oN2bRTcdMBV-WYJ7LWFUYNZx68qufZwq6qPw0HaVkUNnwYmrRg1nRj3wcZgTfnqSqUPcLONMM1WLVhe3b_PiLaNsH1oJXU1VaujZzWRPKPBLcz3kyjNnFrazOrKYlorsZ9hqk-mennXN-HxH6TyRd0LgTzUqjZWMocjd4JkHg9WkOhnAGkT78Wy9SL4ic-ZFmn1xsyBWz5sRrqH5FVy2gJZw-Ca5E2eHGk37QDq8kJfOmcMqd07_mOyeh7Q4MVNz9t0WlZWMpKbGfFjLs0EbjagVoVfb6LQ.eyJraWQiOiJBUUlCQUhoU0I5bGRCekFEOE5JV3BFcC81RExoZUhJcHdFRmtWOUVUQmNuTlM1OTlXQUY3emVmTzhyZW9OU3BZaFdTdnB4bnBBQUFBb2pDQm53WUpLb1pJaHZjTkFRY0dvSUdSTUlHT0FnRUFNSUdJQmdrcWhraUc5dzBCQndFd0hnWUpZSVpJQVdVREJBRXVNQkVFRE9qNWhlYnNGMVdFTjQ5NnVRSUJFSUJid1F2SXU5MzQyRzRkUEY0R0VHWlR5RFV2cHE2WmtwWmxBci9JWmtUTzNTYUVXMjMrTTBicnpYZmhXOS9iN3pMR2s3bnhieXF2bStqZUtjR1NvdlE5WEt4Y3h3eTV3KzZMQzh6K0NWUU5pd2ZPZWdzK3FCUTljYnpWenc9PSJ9"
+}
+2023-12-28 17:58:22 - INFO - Processing test item: {
+    "type": "emr_serverless",
+    "run_name": "emrs_convert_to_parquet_fullyear_6w",
+    "script_name": "emrserverless_scripts/csv_to_parquet.py",
+    "arguments": [
+        "s3-glue-vs-emr-serverless-405389362913",
+        "nyc_rides_2022_csv/",
+        "output/emrs_convert_to_parquet_fullyear/6w/"
+    ],
+    "sparkSubmitParameters": {
+        "spark.hadoop.hive.metastore.client.factory.class": "com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory",
+        "spark.executor.instances": "6",
+        "spark.dynamicAllocation.enabled": "false",
+        "spark.executor.cores": "4",
+        "spark.executor.memory": "16G"
+    }
+}
+2023-12-28 17:58:23 - INFO - Running script emrserverless_scripts/csv_to_parquet.py, using arguments: [s3-glue-vs-emr-serverless-405389362913, nyc_rides_2022_csv/, output/emrs_convert_to_parquet_fullyear/6w/]
+2023-12-28 17:58:23 - INFO - Job Run started. Job Run ID: 00ffrklcarp3c016
+2023-12-28 17:58:23 - INFO - {'ResponseMetadata': {'RequestId': 'f8a453f0-d712-46f6-ab2d-54c7875b9bba', 'HTTPStatusCode': 200, 'HTTPHeaders': {'date': 'Thu, 28 Dec 2023 14:58:23 GMT', 'content-type': 'application/json', 'content-length': '179', 'connection': 'keep-alive', 'x-amzn-requestid': 'f8a453f0-d712-46f6-ab2d-54c7875b9bba', 'x-amzn-remapped-x-amzn-requestid': 'QqL6bGodliAEBqA=', 'x-amzn-remapped-content-length': '179', 'x-amzn-remapped-connection': 'keep-alive', 'x-amz-apigw-id': 'QqL6bGodliAEBqA=', 'x-amzn-trace-id': 'Root=1-658d8d0f-656bb94a56820a7c6a209f06', 'x-amzn-remapped-date': 'Thu, 28 Dec 2023 14:58:23 GMT'}, 'RetryAttempts': 0}, 'applicationId': '00ffm02uu358ji15', 'jobRunId': '00ffrklcarp3c016', 'arn': 'arn:aws:emr-serverless:eu-central-1:405389362913:/applications/00ffm02uu358ji15/jobruns/00ffrklcarp3c016'}
+2023-12-28 17:58:23 - INFO - PENDING
+2023-12-28 17:58:26 - INFO - PENDING
+2023-12-28 17:58:28 - INFO - PENDING
+2023-12-28 17:58:30 - INFO - PENDING
+2023-12-28 17:58:32 - INFO - PENDING
+2023-12-28 17:58:34 - INFO - PENDING
+2023-12-28 17:58:36 - INFO - PENDING
+2023-12-28 17:58:38 - INFO - PENDING
+2023-12-28 17:58:41 - INFO - PENDING
+2023-12-28 17:58:43 - INFO - PENDING
+2023-12-28 17:58:45 - INFO - PENDING
+2023-12-28 17:58:47 - INFO - PENDING
+2023-12-28 17:58:49 - INFO - PENDING
+2023-12-28 17:58:51 - INFO - PENDING
+2023-12-28 17:58:53 - INFO - PENDING
+2023-12-28 17:58:55 - INFO - PENDING
+2023-12-28 17:58:58 - INFO - PENDING
+2023-12-28 17:59:00 - INFO - PENDING
+2023-12-28 17:59:02 - INFO - PENDING
+2023-12-28 17:59:04 - INFO - PENDING
+2023-12-28 17:59:06 - INFO - PENDING
+2023-12-28 17:59:08 - INFO - PENDING
+2023-12-28 17:59:10 - INFO - PENDING
+2023-12-28 17:59:12 - INFO - PENDING
+2023-12-28 17:59:15 - INFO - PENDING
+2023-12-28 17:59:17 - INFO - PENDING
+2023-12-28 17:59:19 - INFO - PENDING
+2023-12-28 17:59:21 - INFO - PENDING
+2023-12-28 17:59:23 - INFO - PENDING
+2023-12-28 17:59:25 - INFO - PENDING
+2023-12-28 17:59:27 - INFO - PENDING
+2023-12-28 17:59:29 - INFO - PENDING
+2023-12-28 17:59:32 - INFO - PENDING
+2023-12-28 17:59:34 - INFO - PENDING
+2023-12-28 17:59:36 - INFO - PENDING
+2023-12-28 17:59:38 - INFO - PENDING
+2023-12-28 17:59:40 - INFO - State PENDING: 76.589672 seconds
+2023-12-28 17:59:40 - INFO - SCHEDULED
+2023-12-28 17:59:42 - INFO - SCHEDULED
+2023-12-28 17:59:44 - INFO - SCHEDULED
+2023-12-28 17:59:47 - INFO - SCHEDULED
+2023-12-28 17:59:49 - INFO - SCHEDULED
+2023-12-28 17:59:51 - INFO - SCHEDULED
+2023-12-28 17:59:53 - INFO - SCHEDULED
+2023-12-28 17:59:55 - INFO - SCHEDULED
+2023-12-28 17:59:58 - INFO - SCHEDULED
+2023-12-28 18:00:00 - INFO - SCHEDULED
+2023-12-28 18:00:02 - INFO - SCHEDULED
+2023-12-28 18:00:04 - INFO - SCHEDULED
+2023-12-28 18:00:06 - INFO - SCHEDULED
+2023-12-28 18:00:08 - INFO - SCHEDULED
+2023-12-28 18:00:10 - INFO - SCHEDULED
+2023-12-28 18:00:12 - INFO - SCHEDULED
+2023-12-28 18:00:15 - INFO - SCHEDULED
+2023-12-28 18:00:17 - INFO - SCHEDULED
+2023-12-28 18:00:19 - INFO - State SCHEDULED: 38.827841 seconds
+2023-12-28 18:00:19 - INFO - RUNNING
+2023-12-28 18:00:21 - INFO - RUNNING
+2023-12-28 18:00:23 - INFO - RUNNING
+2023-12-28 18:00:25 - INFO - RUNNING
+2023-12-28 18:00:27 - INFO - RUNNING
+2023-12-28 18:00:30 - INFO - RUNNING
+2023-12-28 18:00:33 - INFO - RUNNING
+2023-12-28 18:00:35 - INFO - RUNNING
+2023-12-28 18:00:37 - INFO - RUNNING
+2023-12-28 18:00:39 - INFO - RUNNING
+2023-12-28 18:00:41 - INFO - RUNNING
+2023-12-28 18:00:44 - INFO - RUNNING
+2023-12-28 18:00:46 - INFO - RUNNING
+2023-12-28 18:00:48 - INFO - RUNNING
+2023-12-28 18:00:50 - INFO - RUNNING
+2023-12-28 18:00:52 - INFO - RUNNING
+2023-12-28 18:00:54 - INFO - RUNNING
+2023-12-28 18:00:56 - INFO - RUNNING
+2023-12-28 18:00:58 - INFO - RUNNING
+2023-12-28 18:01:01 - INFO - RUNNING
+2023-12-28 18:01:03 - INFO - RUNNING
+2023-12-28 18:01:05 - INFO - RUNNING
+2023-12-28 18:01:07 - INFO - RUNNING
+2023-12-28 18:01:09 - INFO - RUNNING
+2023-12-28 18:01:11 - INFO - RUNNING
+2023-12-28 18:01:13 - INFO - RUNNING
+2023-12-28 18:01:16 - INFO - RUNNING
+2023-12-28 18:01:18 - INFO - RUNNING
+2023-12-28 18:01:20 - INFO - RUNNING
+2023-12-28 18:01:22 - INFO - RUNNING
+2023-12-28 18:01:24 - INFO - RUNNING
+2023-12-28 18:01:26 - INFO - RUNNING
+2023-12-28 18:01:28 - INFO - RUNNING
+2023-12-28 18:01:30 - INFO - RUNNING
+2023-12-28 18:01:33 - INFO - RUNNING
+2023-12-28 18:01:35 - INFO - RUNNING
+2023-12-28 18:01:37 - INFO - RUNNING
+2023-12-28 18:01:39 - INFO - RUNNING
+2023-12-28 18:01:41 - INFO - RUNNING
+2023-12-28 18:01:43 - INFO - RUNNING
+2023-12-28 18:01:45 - INFO - RUNNING
+2023-12-28 18:01:48 - INFO - RUNNING
+2023-12-28 18:01:50 - INFO - RUNNING
+2023-12-28 18:01:52 - INFO - RUNNING
+2023-12-28 18:01:54 - INFO - RUNNING
+2023-12-28 18:01:56 - INFO - RUNNING
+2023-12-28 18:01:58 - INFO - RUNNING
+2023-12-28 18:02:00 - INFO - RUNNING
+2023-12-28 18:02:02 - INFO - RUNNING
+2023-12-28 18:02:05 - INFO - State RUNNING: 105.633537 seconds
+2023-12-28 18:02:05 - INFO - SUCCESS
+2023-12-28 18:02:09 - INFO - Waiting for totalResourceUtilization to be populated.
+2023-12-28 18:02:11 - INFO - Waiting for totalResourceUtilization to be populated.
+2023-12-28 18:02:13 - INFO - Waiting for totalResourceUtilization to be populated.
+2023-12-28 18:02:13 - INFO - Total Running Time: 230.5242 seconds
+2023-12-28 18:02:13 - INFO - Output:
+{
+    "state_durations": {
+        "PENDING": 76.589672,
+        "SCHEDULED": 38.827841,
+        "RUNNING": 105.633537,
+        "SUCCESS": 2.001558
+    },
+    "totalResourceUtilization": {
+        "vCPUHour": 0.767,
+        "memoryGBHour": 3.391,
+        "storageGBHour": 3.833
+    },
+    "billedResourceUtilization": {},
+    "totalExecutionDurationSeconds": 106,
+    "dashboard_url": "https://j-00ffrklcarp3c016.dashboard.emr-serverless.eu-central-1.amazonaws.com/?authToken=eDAx-mBCtC9CnzCdBsnZf96H_x6NBPjF-xqlX5inFOkep9Gp0ILGiJE5r1dfKjUJPD0d8NpngG86W0j1paHsSy4bYMmf59NEYAq9Qp8QSNFC45j4nlC1w1H_Xjy87wPLxN-tmxnikDKeB1Ocerx-oXt977o79ooIobvyXMjPLPvyxPnSr_zs9ZXVkw-6ovldsjpJugbnh3dDIuOMPaG2qfFqNr2tbtLVY4367MbdHkDK-seIAJG13tWqQoB9gLdumkrc4KZNq40ePG29cdYT9FB6KUCXVd4aCm5VKYWrw4Vek4XZXLqH7NIRC7JYmhy2lB0-XU1EnYGiJXh9G0yFvqX-jSV8QJ6s1444IgSJokH1aVeN9xsx80aZvireBbr5qempTFC58QBEYKzRt1mm-al1jxjbiiwl53HbXoC9utJJed1hWOSCqMr9DoU0d1vGDV9mEDJjAtAgnSm17mODOnT2yga-w6atgYtQrD_DruTJvZ5QmOtfoTs5jMCCfvjwD5890D-ywh9WjIYs5dGtik0Y76eTg9yxGmBR_I-6X37rwMTIONOGfOT2T2G2KQeXi6Zxq8SN1aro2CH7aSe0SeAcQD02DRyrYENIfVcFJgDvsnAm7VTSjUTBAjgazDCcJ1L4xLIWTzMnZKvQmb6vOnW92gwnOEcPOkRLe-cGRhRbRj5_BGd9P5HSoeEXgIhenT3yW6F8tOpd8WR3PwTvmN8NeBahCovXOP_Fws7DDU-3gi3jYwExPHn7yyPueTQHed0sr2YcyDBVoXrxZOr4Or1KtZawNXfHnktaTDSEE3msNNzCTNB9i11m3Pz4usCsgZeLPjEvWKRbCO8_uYQO6Swp7NKIvmkDxmnZUlbMuIO4gZs_mVbxF2uQTmnzbzS2OBkTMdMRRZohmPLhfPtSsXnO4NfMaLuw4E891daz4eCydXkTmzaM8Z_QkTd1QTN36Q5PammeTf1BPwqq4bg28Hk6ZMxuvX71NXwg2qU2EW-gxpU.eyJraWQiOiJBUUlCQUhoU0I5bGRCekFEOE5JV3BFcC81RExoZUhJcHdFRmtWOUVUQmNuTlM1OTlXQUdqaFVXMjdKUVBad0hmUFc5ZnJMZzFBQUFBb2pDQm53WUpLb1pJaHZjTkFRY0dvSUdSTUlHT0FnRUFNSUdJQmdrcWhraUc5dzBCQndFd0hnWUpZSVpJQVdVREJBRXVNQkVFREVGVU1RU3IvM3JrQnFhMG1RSUJFSUJidHpVZW12UXFUTy9Rd3FObTYydUNObVhDYmd2Z3FtUGZwNFlXM05jbGdGWS8yRGMwaFhzaWkyQi9aN1FyNUtOaVI5bUFkVG8xMXlDS09PQXkwUjdOK0lXd2Z6NHRjVWo2REZqTlpIakdkMGZzQzkxVXZCN3pMNWVSa1E9PSJ9"
+}

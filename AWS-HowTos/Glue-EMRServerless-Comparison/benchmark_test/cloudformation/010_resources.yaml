@@ -1,0 +1,154 @@
+
+Resources:
+  # S3 bucket for EMR scripts, Glue Job Scripts, sample data and outputs
+  EMRServerlessS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "s3-glue-vs-emr-serverless-${AWS::AccountId}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+
+  ###### EMR Serverless
+  # IAM Role for EMR serverless
+  EMRServerlessRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: role-emr-serverless-sample
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - emr-serverless.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: 'EMRServerlessPolicy'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: 'Allow'
+                Action: 
+                  - 's3:*'
+                  - 'logs:*'
+                Resource: '*'  
+
+  EMRServerlessApplication:
+    Type: 'AWS::EMRServerless::Application'
+    Properties:
+      Name: emrsrvless-app-sample
+      ReleaseLabel: emr-6.15.0
+      Type: Spark
+      AutoStartConfiguration:
+        Enabled: true
+      AutoStopConfiguration:
+        Enabled: true
+        IdleTimeoutMinutes: 15
+      MaximumCapacity:
+        Cpu: '40 vCPU'
+        Memory: '3000 GB'
+        Disk: '20000 GB'      
+
+  ###### AWS Glue
+  GlueIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: role-glue-sample
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - glue.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: /
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+        - arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole
+
+  SampleGlueJob:
+    Type: AWS::Glue::Job
+    Properties:
+      Name: gluej-runner-2-workers
+      GlueVersion: 4.0
+      Description: "Sample Glue Job for Glue Runner Test"
+      Role: !GetAtt GlueIAMRole.Arn
+      Command:
+        Name: glueetl
+        PythonVersion: 3
+        ScriptLocation: !Sub "s3://${EMRServerlessS3Bucket}/glue_scripts/sample_2_workers.py"
+      DefaultArguments:
+        "--enable-metrics": "true" 
+        "--enable-job-insights": "true"
+        "--enable-observability-metrics" : "true"
+        "--enable-spark-ui": "true"
+        "--spark-event-logs-path": !Sub "s3://${EMRServerlessS3Bucket}/glue-spark-event-logs/"        
+      #   "--enable-auto-scaling": "true" # when we use auto-scaling - 1 
+      # MaxCapacity: 2 # when we use auto-scaling - 2
+      NumberOfWorkers: 2  # when we DON't use auto-scaling - 1
+      WorkerType: G.1X # when we DON't use auto-scaling - 2            
+
+  SampleGlueJob6workers:
+    Type: AWS::Glue::Job
+    Properties:
+      Name: gluej-runner-6-workers
+      GlueVersion: 4.0
+      Description: "Sample Glue Job for Glue Runner Test"
+      Role: !GetAtt GlueIAMRole.Arn
+      Command:
+        Name: glueetl
+        PythonVersion: 3
+        ScriptLocation: !Sub "s3://${EMRServerlessS3Bucket}/glue_scripts/sample_6_workers.py"
+      DefaultArguments:
+        "--enable-metrics": "true" 
+        "--enable-job-insights": "true"
+        "--enable-observability-metrics" : "true"
+        "--enable-spark-ui": "true"
+        "--spark-event-logs-path": !Sub "s3://${EMRServerlessS3Bucket}/glue-spark-event-logs/"        
+      #   "--enable-auto-scaling": "true" # when we use auto-scaling - 1 
+      # MaxCapacity: 2 # when we use auto-scaling - 2
+      NumberOfWorkers: 6  # when we DON't use auto-scaling - 1
+      WorkerType: G.1X # when we DON't use auto-scaling - 2          
+
+  SampleGlueJobAutoScale:
+    Type: AWS::Glue::Job
+    Properties:
+      Name: gluej-runner-auto-scale
+      GlueVersion: 4.0
+      Description: "Sample Glue Job for Glue Runner Test"
+      Role: !GetAtt GlueIAMRole.Arn
+      Command:
+        Name: glueetl
+        PythonVersion: 3
+        ScriptLocation: !Sub "s3://${EMRServerlessS3Bucket}/glue_scripts/sample_auto_scale.py"
+      DefaultArguments:
+        "--enable-metrics": "true" 
+        "--enable-job-insights": "true"
+        "--enable-observability-metrics" : "true"
+        "--enable-spark-ui": "true"
+        "--spark-event-logs-path": !Sub "s3://${EMRServerlessS3Bucket}/glue-spark-event-logs/"        
+        "--enable-auto-scaling": "true" 
+      MaxCapacity: 10      
+
+Outputs:
+  EMRServerlessApplicationId:
+    Value: !Ref EMRServerlessApplication
+    Export:
+      Name: EMRServerlessApplicationId
+
+  EMRServerlessRoleArn:
+    Value: !GetAtt EMRServerlessRole.Arn
+    Export:
+      Name: EMRServerlessRoleArn      
+
+  BenchmarkTestS3Bucket:
+    Value: !Ref EMRServerlessS3Bucket
+    Export:
+      Name: BenchmarkTestS3Bucket
