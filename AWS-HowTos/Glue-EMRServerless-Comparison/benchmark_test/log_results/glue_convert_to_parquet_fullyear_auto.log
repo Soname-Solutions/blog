@@ -1,0 +1,404 @@
+2023-12-28 17:00:35 - INFO - Processing test item: {
+    "type": "glue",
+    "run_name": "glue_convert_to_parquet_fullyear_auto",
+    "script_name": "glue_scripts/csv_to_parquet.py",
+    "job_name": "gluej-runner-auto-scale",
+    "arguments": {
+        "--s3_bucket_name": "s3-glue-vs-emr-serverless-405389362913",
+        "--input_path": "nyc_rides_2022_csv/",
+        "--output_path": "output/glue_convert_to_parquet_fullyear/auto/"
+    }
+}
+2023-12-28 17:00:37 - INFO - Job Run started. Job Run ID: jr_2dc466c01be7583d76a2d8cbca2b1b3ad157b5ec6136dd8d7adede86776ec7db
+2023-12-28 17:00:37 - INFO - {'JobRunId': 'jr_2dc466c01be7583d76a2d8cbca2b1b3ad157b5ec6136dd8d7adede86776ec7db', 'ResponseMetadata': {'RequestId': 'f7bb5b5b-e41f-48ff-b2c3-d168bdea8c7c', 'HTTPStatusCode': 200, 'HTTPHeaders': {'date': 'Thu, 28 Dec 2023 14:00:37 GMT', 'content-type': 'application/x-amz-json-1.1', 'content-length': '82', 'connection': 'keep-alive', 'x-amzn-requestid': 'f7bb5b5b-e41f-48ff-b2c3-d168bdea8c7c'}, 'RetryAttempts': 0}}
+2023-12-28 17:00:37 - INFO - RUNNING
+2023-12-28 17:00:40 - INFO - RUNNING
+2023-12-28 17:00:42 - INFO - RUNNING
+2023-12-28 17:00:44 - INFO - RUNNING
+2023-12-28 17:00:46 - INFO - RUNNING
+2023-12-28 17:00:48 - INFO - RUNNING
+2023-12-28 17:00:50 - INFO - RUNNING
+2023-12-28 17:00:52 - INFO - RUNNING
+2023-12-28 17:00:55 - INFO - RUNNING
+2023-12-28 17:00:57 - INFO - RUNNING
+2023-12-28 17:00:59 - INFO - RUNNING
+2023-12-28 17:01:01 - INFO - RUNNING
+2023-12-28 17:01:03 - INFO - RUNNING
+2023-12-28 17:01:05 - INFO - RUNNING
+2023-12-28 17:01:08 - INFO - RUNNING
+2023-12-28 17:01:10 - INFO - RUNNING
+2023-12-28 17:01:12 - INFO - RUNNING
+2023-12-28 17:01:14 - INFO - RUNNING
+2023-12-28 17:01:16 - INFO - RUNNING
+2023-12-28 17:01:18 - INFO - RUNNING
+2023-12-28 17:01:20 - INFO - RUNNING
+2023-12-28 17:01:23 - INFO - RUNNING
+2023-12-28 17:01:25 - INFO - RUNNING
+2023-12-28 17:01:27 - INFO - RUNNING
+2023-12-28 17:01:29 - INFO - RUNNING
+2023-12-28 17:01:31 - INFO - RUNNING
+2023-12-28 17:01:33 - INFO - RUNNING
+2023-12-28 17:01:36 - INFO - RUNNING
+2023-12-28 17:01:38 - INFO - RUNNING
+2023-12-28 17:01:40 - INFO - RUNNING
+2023-12-28 17:01:42 - INFO - RUNNING
+2023-12-28 17:01:44 - INFO - RUNNING
+2023-12-28 17:01:46 - INFO - RUNNING
+2023-12-28 17:01:49 - INFO - RUNNING
+2023-12-28 17:01:51 - INFO - RUNNING
+2023-12-28 17:01:53 - INFO - RUNNING
+2023-12-28 17:01:55 - INFO - RUNNING
+2023-12-28 17:01:57 - INFO - RUNNING
+2023-12-28 17:01:59 - INFO - RUNNING
+2023-12-28 17:02:02 - INFO - RUNNING
+2023-12-28 17:02:04 - INFO - RUNNING
+2023-12-28 17:02:06 - INFO - RUNNING
+2023-12-28 17:02:08 - INFO - RUNNING
+2023-12-28 17:02:10 - INFO - RUNNING
+2023-12-28 17:02:12 - INFO - RUNNING
+2023-12-28 17:02:15 - INFO - RUNNING
+2023-12-28 17:02:17 - INFO - RUNNING
+2023-12-28 17:02:19 - INFO - RUNNING
+2023-12-28 17:02:21 - INFO - RUNNING
+2023-12-28 17:02:23 - INFO - RUNNING
+2023-12-28 17:02:25 - INFO - RUNNING
+2023-12-28 17:02:27 - INFO - RUNNING
+2023-12-28 17:02:30 - INFO - RUNNING
+2023-12-28 17:02:32 - INFO - RUNNING
+2023-12-28 17:02:34 - INFO - RUNNING
+2023-12-28 17:02:36 - INFO - RUNNING
+2023-12-28 17:02:38 - INFO - RUNNING
+2023-12-28 17:02:40 - INFO - RUNNING
+2023-12-28 17:02:43 - INFO - RUNNING
+2023-12-28 17:02:45 - INFO - RUNNING
+2023-12-28 17:02:47 - INFO - RUNNING
+2023-12-28 17:02:49 - INFO - RUNNING
+2023-12-28 17:02:51 - INFO - State RUNNING: 133.808401 seconds
+2023-12-28 17:02:51 - INFO - SUCCEEDED
+2023-12-28 17:02:54 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:02:56 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:02:58 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:00 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:02 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:04 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:06 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:09 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:11 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:13 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:15 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:18 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:20 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:03:22 - INFO - Total Running Time: 165.4497 seconds
+2023-12-28 17:03:22 - INFO - Output:
+{
+    "state_durations": {
+        "RUNNING": 133.808401,
+        "SUCCEEDED": 2.002235
+    },
+    "execution_time_sec": 128,
+    "allocated_capacity": 10,
+    "dpu_seconds": 882.0,
+    "dpu_hours": 0.245,
+    "response": {
+        "JobRun": {
+            "Id": "jr_2dc466c01be7583d76a2d8cbca2b1b3ad157b5ec6136dd8d7adede86776ec7db",
+            "Attempt": 0,
+            "JobName": "gluej-runner-auto-scale",
+            "StartedOn": "2023-12-28 17:00:37.324000+03:00",
+            "LastModifiedOn": "2023-12-28 17:02:49.596000+03:00",
+            "CompletedOn": "2023-12-28 17:02:49.596000+03:00",
+            "JobRunState": "SUCCEEDED",
+            "Arguments": {
+                "--input_path": "nyc_rides_2022_csv/",
+                "--s3_bucket_name": "s3-glue-vs-emr-serverless-405389362913",
+                "--output_path": "output/glue_convert_to_parquet_fullyear/auto/"
+            },
+            "PredecessorRuns": [],
+            "AllocatedCapacity": 10,
+            "ExecutionTime": 128,
+            "Timeout": 2880,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "LogGroupName": "/aws-glue/jobs",
+            "GlueVersion": "4.0",
+            "DPUSeconds": 882.0
+        },
+        "ResponseMetadata": {
+            "RequestId": "64539433-8333-4758-b513-83a95314f279",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Thu, 28 Dec 2023 14:03:20 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "1074",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "64539433-8333-4758-b513-83a95314f279"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
+2023-12-28 17:55:16 - INFO - Processing test item: {
+    "type": "glue",
+    "run_name": "glue_convert_to_parquet_fullyear_auto",
+    "script_name": "glue_scripts/csv_to_parquet.py",
+    "job_name": "gluej-runner-auto-scale",
+    "arguments": {
+        "--s3_bucket_name": "s3-glue-vs-emr-serverless-405389362913",
+        "--input_path": "nyc_rides_2022_csv/",
+        "--output_path": "output/glue_convert_to_parquet_fullyear/auto/"
+    }
+}
+2023-12-28 17:55:18 - INFO - Job Run started. Job Run ID: jr_ab84ed1d80e64ca0d8c78608e52dfff80766e93ca2ad7a91c72528ec2751b682
+2023-12-28 17:55:18 - INFO - {'JobRunId': 'jr_ab84ed1d80e64ca0d8c78608e52dfff80766e93ca2ad7a91c72528ec2751b682', 'ResponseMetadata': {'RequestId': 'b5c12e3b-faab-42c0-9b8d-b0a96c2264a6', 'HTTPStatusCode': 200, 'HTTPHeaders': {'date': 'Thu, 28 Dec 2023 14:55:17 GMT', 'content-type': 'application/x-amz-json-1.1', 'content-length': '82', 'connection': 'keep-alive', 'x-amzn-requestid': 'b5c12e3b-faab-42c0-9b8d-b0a96c2264a6'}, 'RetryAttempts': 0}}
+2023-12-28 17:55:18 - INFO - RUNNING
+2023-12-28 17:55:20 - INFO - RUNNING
+2023-12-28 17:55:22 - INFO - RUNNING
+2023-12-28 17:55:24 - INFO - RUNNING
+2023-12-28 17:55:26 - INFO - RUNNING
+2023-12-28 17:55:28 - INFO - RUNNING
+2023-12-28 17:55:31 - INFO - RUNNING
+2023-12-28 17:55:33 - INFO - RUNNING
+2023-12-28 17:55:35 - INFO - RUNNING
+2023-12-28 17:55:37 - INFO - RUNNING
+2023-12-28 17:55:39 - INFO - RUNNING
+2023-12-28 17:55:41 - INFO - RUNNING
+2023-12-28 17:55:43 - INFO - RUNNING
+2023-12-28 17:55:46 - INFO - RUNNING
+2023-12-28 17:55:48 - INFO - RUNNING
+2023-12-28 17:55:50 - INFO - RUNNING
+2023-12-28 17:55:52 - INFO - RUNNING
+2023-12-28 17:55:54 - INFO - RUNNING
+2023-12-28 17:55:56 - INFO - RUNNING
+2023-12-28 17:55:59 - INFO - RUNNING
+2023-12-28 17:56:01 - INFO - RUNNING
+2023-12-28 17:56:03 - INFO - RUNNING
+2023-12-28 17:56:05 - INFO - RUNNING
+2023-12-28 17:56:07 - INFO - RUNNING
+2023-12-28 17:56:09 - INFO - RUNNING
+2023-12-28 17:56:11 - INFO - RUNNING
+2023-12-28 17:56:14 - INFO - RUNNING
+2023-12-28 17:56:16 - INFO - RUNNING
+2023-12-28 17:56:18 - INFO - RUNNING
+2023-12-28 17:56:20 - INFO - RUNNING
+2023-12-28 17:56:22 - INFO - RUNNING
+2023-12-28 17:56:24 - INFO - RUNNING
+2023-12-28 17:56:27 - INFO - RUNNING
+2023-12-28 17:56:29 - INFO - RUNNING
+2023-12-28 17:56:31 - INFO - RUNNING
+2023-12-28 17:56:33 - INFO - RUNNING
+2023-12-28 17:56:35 - INFO - RUNNING
+2023-12-28 17:56:37 - INFO - RUNNING
+2023-12-28 17:56:39 - INFO - RUNNING
+2023-12-28 17:56:42 - INFO - RUNNING
+2023-12-28 17:56:44 - INFO - RUNNING
+2023-12-28 17:56:46 - INFO - RUNNING
+2023-12-28 17:56:48 - INFO - RUNNING
+2023-12-28 17:56:50 - INFO - RUNNING
+2023-12-28 17:56:52 - INFO - RUNNING
+2023-12-28 17:56:54 - INFO - RUNNING
+2023-12-28 17:56:57 - INFO - RUNNING
+2023-12-28 17:56:59 - INFO - RUNNING
+2023-12-28 17:57:01 - INFO - RUNNING
+2023-12-28 17:57:03 - INFO - RUNNING
+2023-12-28 17:57:05 - INFO - RUNNING
+2023-12-28 17:57:07 - INFO - RUNNING
+2023-12-28 17:57:10 - INFO - RUNNING
+2023-12-28 17:57:12 - INFO - RUNNING
+2023-12-28 17:57:14 - INFO - RUNNING
+2023-12-28 17:57:16 - INFO - State RUNNING: 118.288076 seconds
+2023-12-28 17:57:16 - INFO - SUCCEEDED
+2023-12-28 17:57:18 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:20 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:23 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:25 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:27 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:29 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:31 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:34 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:36 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:38 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:40 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:42 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:44 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:47 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 17:57:49 - INFO - Total Running Time: 151.6635 seconds
+2023-12-28 17:57:49 - INFO - Output:
+{
+    "state_durations": {
+        "RUNNING": 118.288076,
+        "SUCCEEDED": 2.002166
+    },
+    "execution_time_sec": 113,
+    "allocated_capacity": 10,
+    "dpu_seconds": 816.0,
+    "dpu_hours": 0.227,
+    "response": {
+        "JobRun": {
+            "Id": "jr_ab84ed1d80e64ca0d8c78608e52dfff80766e93ca2ad7a91c72528ec2751b682",
+            "Attempt": 0,
+            "JobName": "gluej-runner-auto-scale",
+            "StartedOn": "2023-12-28 17:55:17.668000+03:00",
+            "LastModifiedOn": "2023-12-28 17:57:15.340000+03:00",
+            "CompletedOn": "2023-12-28 17:57:15.340000+03:00",
+            "JobRunState": "SUCCEEDED",
+            "Arguments": {
+                "--input_path": "nyc_rides_2022_csv/",
+                "--s3_bucket_name": "s3-glue-vs-emr-serverless-405389362913",
+                "--output_path": "output/glue_convert_to_parquet_fullyear/auto/"
+            },
+            "PredecessorRuns": [],
+            "AllocatedCapacity": 10,
+            "ExecutionTime": 113,
+            "Timeout": 2880,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "LogGroupName": "/aws-glue/jobs",
+            "GlueVersion": "4.0",
+            "DPUSeconds": 816.0
+        },
+        "ResponseMetadata": {
+            "RequestId": "a773df4b-2fd9-45b1-a38e-915bc5708164",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Thu, 28 Dec 2023 14:57:46 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "1072",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "a773df4b-2fd9-45b1-a38e-915bc5708164"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}
+2023-12-28 18:19:38 - INFO - Processing test item: {
+    "type": "glue",
+    "run_name": "glue_convert_to_parquet_fullyear_auto",
+    "script_name": "glue_scripts/csv_to_parquet.py",
+    "job_name": "gluej-runner-auto-scale",
+    "arguments": {
+        "--s3_bucket_name": "s3-glue-vs-emr-serverless-405389362913",
+        "--input_path": "nyc_rides_2022_csv/",
+        "--output_path": "output/glue_convert_to_parquet_fullyear/auto/"
+    }
+}
+2023-12-28 18:19:40 - INFO - Job Run started. Job Run ID: jr_717b47a25590f57bf233fb2b22c2946a0b69adf870e6a56a611ecaff61318357
+2023-12-28 18:19:40 - INFO - {'JobRunId': 'jr_717b47a25590f57bf233fb2b22c2946a0b69adf870e6a56a611ecaff61318357', 'ResponseMetadata': {'RequestId': '11a768b2-a4a1-4977-8737-05e35570862e', 'HTTPStatusCode': 200, 'HTTPHeaders': {'date': 'Thu, 28 Dec 2023 15:19:40 GMT', 'content-type': 'application/x-amz-json-1.1', 'content-length': '82', 'connection': 'keep-alive', 'x-amzn-requestid': '11a768b2-a4a1-4977-8737-05e35570862e'}, 'RetryAttempts': 0}}
+2023-12-28 18:19:40 - INFO - RUNNING
+2023-12-28 18:19:42 - INFO - RUNNING
+2023-12-28 18:19:44 - INFO - RUNNING
+2023-12-28 18:19:46 - INFO - RUNNING
+2023-12-28 18:19:49 - INFO - RUNNING
+2023-12-28 18:19:51 - INFO - RUNNING
+2023-12-28 18:19:53 - INFO - RUNNING
+2023-12-28 18:19:55 - INFO - RUNNING
+2023-12-28 18:19:57 - INFO - RUNNING
+2023-12-28 18:19:59 - INFO - RUNNING
+2023-12-28 18:20:01 - INFO - RUNNING
+2023-12-28 18:20:04 - INFO - RUNNING
+2023-12-28 18:20:06 - INFO - RUNNING
+2023-12-28 18:20:08 - INFO - RUNNING
+2023-12-28 18:20:10 - INFO - RUNNING
+2023-12-28 18:20:12 - INFO - RUNNING
+2023-12-28 18:20:14 - INFO - RUNNING
+2023-12-28 18:20:16 - INFO - RUNNING
+2023-12-28 18:20:19 - INFO - RUNNING
+2023-12-28 18:20:21 - INFO - RUNNING
+2023-12-28 18:20:23 - INFO - RUNNING
+2023-12-28 18:20:25 - INFO - RUNNING
+2023-12-28 18:20:27 - INFO - RUNNING
+2023-12-28 18:20:29 - INFO - RUNNING
+2023-12-28 18:20:31 - INFO - RUNNING
+2023-12-28 18:20:34 - INFO - RUNNING
+2023-12-28 18:20:36 - INFO - RUNNING
+2023-12-28 18:20:38 - INFO - RUNNING
+2023-12-28 18:20:40 - INFO - RUNNING
+2023-12-28 18:20:42 - INFO - RUNNING
+2023-12-28 18:20:44 - INFO - RUNNING
+2023-12-28 18:20:46 - INFO - RUNNING
+2023-12-28 18:20:49 - INFO - RUNNING
+2023-12-28 18:20:51 - INFO - RUNNING
+2023-12-28 18:20:53 - INFO - RUNNING
+2023-12-28 18:20:55 - INFO - RUNNING
+2023-12-28 18:20:57 - INFO - RUNNING
+2023-12-28 18:20:59 - INFO - RUNNING
+2023-12-28 18:21:01 - INFO - RUNNING
+2023-12-28 18:21:04 - INFO - RUNNING
+2023-12-28 18:21:06 - INFO - RUNNING
+2023-12-28 18:21:08 - INFO - RUNNING
+2023-12-28 18:21:10 - INFO - RUNNING
+2023-12-28 18:21:12 - INFO - RUNNING
+2023-12-28 18:21:14 - INFO - RUNNING
+2023-12-28 18:21:16 - INFO - RUNNING
+2023-12-28 18:21:19 - INFO - RUNNING
+2023-12-28 18:21:21 - INFO - RUNNING
+2023-12-28 18:21:23 - INFO - RUNNING
+2023-12-28 18:21:25 - INFO - RUNNING
+2023-12-28 18:21:27 - INFO - RUNNING
+2023-12-28 18:21:29 - INFO - State RUNNING: 109.363492 seconds
+2023-12-28 18:21:29 - INFO - SUCCEEDED
+2023-12-28 18:21:32 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:34 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:36 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:38 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:40 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:43 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:45 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:47 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:49 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:51 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:53 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:55 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:21:57 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:22:00 - INFO - Waiting for DPUSeconds to be filled in
+2023-12-28 18:22:02 - INFO - Total Running Time: 142.2774 seconds
+2023-12-28 18:22:02 - INFO - Output:
+{
+    "state_durations": {
+        "RUNNING": 109.363492,
+        "SUCCEEDED": 2.001925
+    },
+    "execution_time_sec": 105,
+    "allocated_capacity": 10,
+    "dpu_seconds": 712.0,
+    "dpu_hours": 0.198,
+    "response": {
+        "JobRun": {
+            "Id": "jr_717b47a25590f57bf233fb2b22c2946a0b69adf870e6a56a611ecaff61318357",
+            "Attempt": 0,
+            "JobName": "gluej-runner-auto-scale",
+            "StartedOn": "2023-12-28 18:19:40.008000+03:00",
+            "LastModifiedOn": "2023-12-28 18:21:29.437000+03:00",
+            "CompletedOn": "2023-12-28 18:21:29.437000+03:00",
+            "JobRunState": "SUCCEEDED",
+            "Arguments": {
+                "--input_path": "nyc_rides_2022_csv/",
+                "--s3_bucket_name": "s3-glue-vs-emr-serverless-405389362913",
+                "--output_path": "output/glue_convert_to_parquet_fullyear/auto/"
+            },
+            "PredecessorRuns": [],
+            "AllocatedCapacity": 10,
+            "ExecutionTime": 105,
+            "Timeout": 2880,
+            "MaxCapacity": 10.0,
+            "WorkerType": "G.1X",
+            "NumberOfWorkers": 10,
+            "LogGroupName": "/aws-glue/jobs",
+            "GlueVersion": "4.0",
+            "DPUSeconds": 712.0
+        },
+        "ResponseMetadata": {
+            "RequestId": "e81e30d8-df2f-4a6b-bcbe-9874b009d757",
+            "HTTPStatusCode": 200,
+            "HTTPHeaders": {
+                "date": "Thu, 28 Dec 2023 15:21:59 GMT",
+                "content-type": "application/x-amz-json-1.1",
+                "content-length": "1074",
+                "connection": "keep-alive",
+                "x-amzn-requestid": "e81e30d8-df2f-4a6b-bcbe-9874b009d757"
+            },
+            "RetryAttempts": 0
+        }
+    }
+}

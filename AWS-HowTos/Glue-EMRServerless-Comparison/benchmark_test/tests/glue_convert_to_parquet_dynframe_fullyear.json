@@ -1,0 +1,35 @@
+[
+    {
+        "type" : "glue",
+        "run_name": "glue_convert_to_parquet_dynframe_fullyear_6w",
+        "script_name": "glue_scripts/csv_to_parquet_dynframe.py",
+        "job_name" : "gluej-runner-6-workers",
+        "arguments" : {
+            "--s3_bucket_name" : "{s3_bucket}",
+            "--input_path" : "nyc_rides_2022_csv/",
+            "--output_path" : "output/glue_convert_to_parquet_dynframe_fullyear/6w/"
+        }
+    },
+    {
+        "type" : "glue",
+        "run_name": "glue_convert_to_parquet_dynframe_fullyear_2w",
+        "script_name": "glue_scripts/csv_to_parquet_dynframe.py",
+        "job_name" : "gluej-runner-2-workers",
+        "arguments" : {
+            "--s3_bucket_name" : "{s3_bucket}",
+            "--input_path" : "nyc_rides_2022_csv/",
+            "--output_path" : "output/glue_convert_to_parquet_dynframe_fullyear/2w/"
+        }
+    },
+    {
+        "type" : "glue",
+        "run_name": "glue_convert_to_parquet_dynframe_fullyear_auto",
+        "script_name": "glue_scripts/csv_to_parquet_dynframe.py",
+        "job_name" : "gluej-runner-auto-scale",
+        "arguments" : {
+            "--s3_bucket_name" : "{s3_bucket}",
+            "--input_path" : "nyc_rides_2022_csv/",
+            "--output_path" : "output/glue_convert_to_parquet_dynframe_fullyear/auto/"
+        }
+    }        
+]
